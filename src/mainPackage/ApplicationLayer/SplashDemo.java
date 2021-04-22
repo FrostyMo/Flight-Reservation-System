@@ -102,20 +102,20 @@ public class SplashDemo extends Frame implements ActionListener {
     };
      
     public static void main (String args[]) {
-    	try {
-	    	String soundName = "load3.wav";  
-	    	String workingDirectory = System.getProperty("user.dir");
-	    	
-			String requiredDirectory = workingDirectory + "/" + "src/mainPackage/images/";
-	    	AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(requiredDirectory+soundName).getAbsoluteFile());
-	    	Clip clip = AudioSystem.getClip();
-	    	clip.open(audioInputStream);
-	    	clip.start();
-    	}
-    	catch(Exception exc) {
-    		exc.printStackTrace();
-    	}
-        new SplashDemo();
+//    	try {
+//	    	String soundName = "load3.wav";  
+//	    	String workingDirectory = System.getProperty("user.dir");
+//	    	
+//			String requiredDirectory = workingDirectory + "/" + "src/mainPackage/images/";
+//	    	AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(requiredDirectory+soundName).getAbsoluteFile());
+//	    	Clip clip = AudioSystem.getClip();
+//	    	clip.open(audioInputStream);
+//	    	clip.start();
+//    	}
+//    	catch(Exception exc) {
+//    		exc.printStackTrace();
+//    	}
+//        new SplashDemo();
         new WelcomeScreenAndLogin();
     }
 }
