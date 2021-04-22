@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import mainPackage.BusinessLayer.Login;
 
@@ -30,7 +31,7 @@ class WelcomeScreenAndLogin {
 	
 	JFrame f1, f2, f3, f4, f5;
 	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b10;
-	JLabel l1, l2, l3, l4, l5, l6, l7, l8;
+	JLabel l1, l2, l3, l4, l5, l6, l7, l8, signup_label, signup_entry1, signup_entry2;
 	JTextField tf1, tf2, tf3;
 	JPasswordField pf1, pf2, pf3;
 	final static Font allButton = new Font("Bookman Old Style", Font.PLAIN, 16);
@@ -48,7 +49,7 @@ class WelcomeScreenAndLogin {
 		f2 = new JFrame("Login As Admin");
 		f3 = new JFrame("Login As Employee");
 		f4 = new JFrame("Login As Customer");
-		f5 = new JFrame("SignUp As Employee");
+		//f5 = new JFrame("SignUp As Employee");
 		
 		f1.getContentPane().setBackground(Color.BLACK);
 		
@@ -62,7 +63,10 @@ class WelcomeScreenAndLogin {
 		l6 = new JLabel("Enter Password : ");
 		l7 = new JLabel("Enter User ID : ");
 		l8 = new JLabel("Enter Password : ");
-
+		signup_label = new JLabel("Sign Up", SwingConstants.CENTER);
+		signup_entry1 = new JLabel("Admin", SwingConstants.CENTER);
+		signup_entry2 = new JLabel("Customer", SwingConstants.CENTER);
+		
 		b1 = new JButton("Admin");
 		b2 = new JButton("Employee");
 		b3 = new JButton("Customer");
@@ -92,6 +96,26 @@ class WelcomeScreenAndLogin {
 		l6.setFont(allLabel);
 		l7.setFont(allLabel);
 		l8.setFont(allLabel);
+		
+		signup_label.setBounds(600, 0, 90, 39);
+		signup_label.setBackground(Color.WHITE);
+		signup_label.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		signup_label.setOpaque(true);
+		
+		signup_entry1.setBounds(580, 39, 130, 30);
+		signup_entry1.setOpaque(true);
+		signup_entry1.setBackground(Color.WHITE);
+		signup_entry1.setForeground(Color.BLACK);
+		signup_entry1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		signup_entry1.setVisible(false);
+		
+		signup_entry2.setBounds(580, 69, 130, 30);
+		signup_entry2.setOpaque(true);
+		signup_entry2.setBackground(Color.WHITE);
+		signup_entry2.setForeground(Color.BLACK);
+		signup_entry2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		signup_entry2.setVisible(false);
+		
 		
 		tf1 = new JTextField();
 		tf2 = new JTextField();
@@ -162,7 +186,10 @@ class WelcomeScreenAndLogin {
 		f4.add(pf3);
 		f4.add(b8);
 		f4.add(b9);
-		f1.add(b10);
+		//f1.add(b10);
+		f1.add(signup_label);
+		f1.add(signup_entry1);
+		f1.add(signup_entry2);
 		
 		f1.setDefaultCloseOperation(f1.EXIT_ON_CLOSE);
 		f2.setDefaultCloseOperation(f1.DISPOSE_ON_CLOSE);
@@ -191,6 +218,160 @@ class WelcomeScreenAndLogin {
 		f4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//b1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 20));
 		
+		
+		// Top Label with sign up
+		signup_label.addMouseListener(new MouseListener() {
+	
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (arg0.getButton() == MouseEvent.BUTTON1) {
+					JOptionPane.showMessageDialog(f5, "Please Select one of the User type to Sign Up!", "Hi", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+	
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				signup_label.setBackground(myred);
+				signup_label.setForeground(Color.WHITE);
+				signup_label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				signup_entry1.setVisible(true);
+				signup_entry1.setBackground(myred);
+				signup_entry1.setForeground(Color.WHITE);
+				signup_entry2.setVisible(true);
+				signup_entry2.setBackground(myred);
+				signup_entry2.setForeground(Color.WHITE);
+				
+			}
+	
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				signup_label.setBackground(Color.WHITE);
+				signup_label.setForeground(Color.BLACK);
+				signup_label.setCursor(null);
+				signup_entry1.setVisible(false);
+				signup_entry1.setBackground(Color.WHITE);
+				signup_entry1.setForeground(Color.BLACK);
+				signup_entry2.setVisible(false);
+				signup_entry2.setBackground(Color.WHITE);
+				signup_entry2.setForeground(Color.BLACK);
+			}
+	
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+	
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		// Admin Signup Label
+		signup_entry1.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				WelcomeScreenAndLogin.buttonSound();
+				
+				new Admin_SignUp();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				signup_label.setBackground(myred);
+				signup_label.setForeground(Color.WHITE);
+				signup_entry1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				signup_entry1.setVisible(true);
+				signup_entry2.setBackground(myred);
+				signup_entry2.setForeground(Color.WHITE);
+				signup_entry2.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				signup_label.setBackground(Color.WHITE);
+				signup_label.setForeground(Color.BLACK);
+				signup_entry1.setCursor(null);
+				signup_entry1.setVisible(false);
+				signup_entry2.setCursor(null);
+				signup_entry2.setVisible(false);
+				signup_entry2.setBackground(Color.WHITE);
+				signup_entry2.setForeground(Color.BLACK);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}	
+		});
+		
+		signup_entry2.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				WelcomeScreenAndLogin.buttonSound();
+				if (arg0.getButton() == MouseEvent.BUTTON1) {
+					JOptionPane.showMessageDialog(f5, "Customer Sign Up is not yet implemented. Sori :(", "Hi", JOptionPane.INFORMATION_MESSAGE);
+				}
+				//new Admin_SignUp();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				signup_label.setBackground(myred);
+				signup_label.setForeground(Color.WHITE);
+				signup_entry2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				signup_entry2.setBackground(Color.WHITE);
+				signup_entry2.setForeground(Color.BLACK);
+				signup_entry2.setVisible(true);
+				signup_entry1.setVisible(true);
+				signup_entry1.setBackground(myred);
+				signup_entry1.setForeground(Color.WHITE);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				signup_label.setBackground(Color.WHITE);
+				signup_label.setForeground(Color.BLACK);
+				signup_entry1.setCursor(null);
+				signup_entry1.setVisible(false);
+				signup_entry2.setCursor(null);
+				signup_entry2.setVisible(false);
+				signup_entry1.setBackground(Color.WHITE);
+				signup_entry1.setForeground(Color.BLACK);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}	
+		});
 		//Login as Admin button
 		b1.addActionListener(new ActionListener()
 		{
@@ -308,15 +489,15 @@ class WelcomeScreenAndLogin {
 		});
 		
 		// Sign up Admin
-		b10.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				buttonSound();
-				new Admin_SignUp();
-				//f2.setVisible(true);
-			}
-		});
+//		b10.addActionListener(new ActionListener()
+//		{
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//				buttonSound();
+//				new Admin_SignUp();
+//				//f2.setVisible(true);
+//			}
+//		});
 		
 		b1.addMouseListener(new MouseListener() {
 			@Override
@@ -683,47 +864,47 @@ class WelcomeScreenAndLogin {
 				
 			}
 		});
-		b10.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-				b10.setOpaque(true);
-				b10.setContentAreaFilled(false);
-				b10.setBackground(myblue);
-				b10.setForeground(Color.BLUE);
-				b10.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				b10.setContentAreaFilled(true);
-				b10.setBackground(Color.WHITE);
-				b10.setForeground(Color.BLACK);
-				b10.setCursor(null);
-				b10.setOpaque(false);
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+//		b10.addMouseListener(new MouseListener() {
+//			@Override
+//			public void mouseEntered(MouseEvent arg0) {
+//				// TODO Auto-generated method stub
+//				
+//				b10.setOpaque(true);
+//				b10.setContentAreaFilled(false);
+//				b10.setBackground(myblue);
+//				b10.setForeground(Color.BLUE);
+//				b10.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//				
+//			}
+//
+//			@Override
+//			public void mouseExited(MouseEvent arg0) {
+//				// TODO Auto-generated method stub
+//				b10.setContentAreaFilled(true);
+//				b10.setBackground(Color.WHITE);
+//				b10.setForeground(Color.BLACK);
+//				b10.setCursor(null);
+//				b10.setOpaque(false);
+//			}
+//
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void mouseReleased(MouseEvent e) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		});
 	}
 	
 	public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
