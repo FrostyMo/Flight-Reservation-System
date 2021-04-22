@@ -4,21 +4,30 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayer;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.plaf.LayerUI;
 import javax.swing.text.JTextComponent;
 
 import mainPackage.BusinessLayer.Admin_Handler;
@@ -38,10 +47,10 @@ public class Admin_SignUp {
 	private int age;
 	private String AdminAddress;
 	private String gender;
-	private long phone;
+	private String phone;
 	private String nation;
-	private long passport;
-	private long cnic;
+	private String passport;
+	private String cnic;
 	private String joinDate;
 	Admin_Handler aH;
 	
@@ -167,7 +176,7 @@ public class Admin_SignUp {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
 				if(validateForm()) {
-					initializeDetails();
+					if(initializeDetails()) {
 					if(createRecord()) {
 						JOptionPane.showMessageDialog(f5, "Admin Created");
 						f5.setVisible(false);
@@ -175,6 +184,8 @@ public class Admin_SignUp {
 					else{
 						JOptionPane.showMessageDialog(f5, "Record Not Created");
 					}
+				}
+						
 				}
 				else{
 						JOptionPane.showMessageDialog(f5,  "Fill all the details", 
@@ -334,31 +345,217 @@ public class Admin_SignUp {
 			return true;
 	}
 	
+	private static boolean validatePhoneNumber(String phoneNo) {
+		if(phoneNo.matches("\\d{4}[-]\\d{7}")) 
+			return true;
+		else {
+			return false;
+		}
+
+	}
+	private static boolean validateCNIC(String CNIC) {
+		if(CNIC.matches("\\d{5}[-]\\d{7}[-]\\d{1}")) 
+			return true;
+		else {
+			return false;
+		}
+
+	}
+	private static boolean validatepassport(String passport) {
+		//String passp= passport+"";
+		if(passport.matches("\\d{9}")) 
+			return true;
+		else {
+			return false;
+		}
+
+	}
+	private static boolean validateGender(String gender) {
+		if(gender.matches("F") || gender.matches("M")) 
+			return true;
+		else {
+			return false;
+		}
+
+	}
+	
 	@SuppressWarnings("deprecation")
-	public void initializeDetails() {
+	public boolean initializeDetails() {
+		boolean val=false;
+		boolean pb=false;
+		boolean cb=false, psb=false,gb=false;
+		Vector<Boolean> vec = new Vector<Boolean>();
+		Border border = BorderFactory.createLineBorder(Color.RED);
 		try {
-		
-		AdminName = tName.getText();
-		AdminPassword = pf1.getText();
-		age = Integer.parseInt(tAge.getText());
-		AdminAddress = ta1.getText();
-		cnic = Long.parseLong(tCnic.getText());
-		phone = Long.parseLong(tPhone.getText());
-		nation = tNationality.getText();
-		gender = tGender.getText();
-		passport = Long.parseLong(tPassport.getText());
-		
+			age = Integer.parseInt(tAge.getText());
+			tAge.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			f5.add(tAge);
+			val=true;
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(f5, "Enter Valid Details", "Error", JOptionPane.ERROR_MESSAGE);
+			//JOptionPane.showMessageDialog(f5, "Enter Valid Age", "Error", JOptionPane.ERROR_MESSAGE);
+			tAge.setBorder(border);
+			f5.add(tAge);
+			val= false;
+			vec.add(val);
 		}
+		AdminName = tName.getText();
+		AdminPassword = pf1.getText();
+		
+		AdminAddress = ta1.getText();
+		cnic = tCnic.getText();
+		phone =tPhone.getText();
+		nation = tNationality.getText();
+		gender = tGender.getText();
+		passport = tPassport.getText();
+//		JPanel numberPanel = new JPanel();
+//	    numberPanel.add(l4);
+//	    numberPanel.add(new JLayer<JFormattedTextField>((JFormattedTextField) tCnic, layerUI));
+//	    f5.add(numberPanel)
+		//validating phone number
+		pb=validatePhoneNumber(phone);
+		if(pb) {
+			System.out.println("correct phone");
+			tPhone.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			f5.add(tPhone);
+			val=true;
+			vec.add(val);
+			
+		}
+		else {
+			System.out.println("invalid phone");
+			//l9.setBorder(border);
+			//f5.add(l9);
+			tPhone.setBorder(border);
+			f5.add(tPhone);
+			//JOptionPane.showMessageDialog(f5, "Enter Valid PhoneNumber", "Error", JOptionPane.ERROR_MESSAGE);
+			
+			val=false;
+			vec.add(val);
+			
+		}
+		//Cnic validation
+		cb=validateCNIC(cnic);
+		if(cb) {
+			System.out.println("correct cnic");
+			tCnic.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			f5.add(tCnic);
+			val=true;
+			vec.add(val);
+			
+		}
+		else {
+			System.out.println("invalid cnic");
+			tCnic.setBorder(border);
+			f5.add(tCnic);
+			//JOptionPane.showMessageDialog(f5, "Enter Valid CNIC", "Error", JOptionPane.ERROR_MESSAGE);
+			val=false;
+			vec.add(val);
+			
+		}
+		//validate passport
+		psb=validatepassport(passport);
+		if(psb) {
+			System.out.println("correct passport");
+			tPassport.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			f5.add(tPassport);
+			val=true;
+			vec.add(val);
+			
+		}
+		else {
+			System.out.println("invalid passport");
+			tPassport.setBorder(border);
+			f5.add(tPassport);
+			//JOptionPane.showMessageDialog(f5, "Enter Valid PassportNumber", "Error", JOptionPane.ERROR_MESSAGE);
+			val=false;
+			vec.add(val);
+			
+		}
+		//validate gender
+		gb=validateGender(gender);
+		if(gb) {
+			System.out.println("correct gender");
+			tGender.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			f5.add(tGender);
+			val=true;
+			vec.add(val);
+			
+		}
+		else {
+			System.out.println("invalid gender");
+			tGender.setBorder(border);
+			f5.add(tGender);
+			//JOptionPane.showMessageDialog(f5, "Enter Valid Gender", "Error", JOptionPane.ERROR_MESSAGE);
+			val=false;
+			vec.add(val);
+			
+		}
+//		}
+//		catch(Exception e) {
+//			JOptionPane.showMessageDialog(f5, "Enter Valid Details", "Error", JOptionPane.ERROR_MESSAGE);
+//			val= false;
+//			vec.add(val);
+//		}
+		
+		if(vec.contains(false)) {
+			val=false;
+			JOptionPane.showMessageDialog(f5, "Enter Valid Details", "Error", JOptionPane.ERROR_MESSAGE);
+			System.out.println("some attribute invalid");
+		}
+		else {
+			val=true;
+			System.out.println("all correct");
+		}
+		
+		
+		
+		return val;
 	}
 	
 	public boolean createRecord() 
 	{
 		String pattern = "dd/MM/yyyy";
 		joinDate =new SimpleDateFormat(pattern).format(new Date());
-		return aH.AddAdmin(AdminID, AdminName, AdminPassword, cnic, age, gender, AdminAddress, joinDate, nation, phone, passport);
+		
+		String numberCnic= cnic.replaceAll("[^0-9]", "");
+		long lcnic= Long.parseLong(numberCnic); 
+		
+		String numberOnly= phone.replaceAll("[^0-9]", "");
+		long lphone=Long.parseLong(numberOnly); 
+		System.out.print(lphone);
+		long lpassport= Long.parseLong(passport);
+		return aH.AddAdmin(AdminID, AdminName, AdminPassword, lcnic, age, gender, AdminAddress, joinDate, nation, lphone, lpassport);
 	}
+	class ValidationLayerUI extends LayerUI<JFormattedTextField> {
+		@Override
+		public void paint (Graphics g, JComponent c) {
+			super.paint (g, c);
+		
+			JLayer jlayer = (JLayer)c;
+			JFormattedTextField ftf = (JFormattedTextField)jlayer.getView();
+			if (!ftf.isEditValid()) {
+			  Graphics2D g2 = (Graphics2D)g.create();
+			
+			  // Paint the red X.
+			  g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+			      RenderingHints.VALUE_ANTIALIAS_ON);
+			  int w = c.getWidth();
+			  int h = c.getHeight();
+			  int s = 8;
+			  int pad = 4;
+			  int x = w - pad - s;
+			  int y = (h - s) / 2;
+			  g2.setPaint(Color.red);
+			  g2.fillRect(x, y, s + 1, s + 1);
+			  g2.setPaint(Color.white);
+			  g2.drawLine(x, y, x + s, y + s);
+			  g2.drawLine(x, y + s, x + s, y);
+			
+			  g2.dispose();
+			}
+		}
+	}
+
 }
 
