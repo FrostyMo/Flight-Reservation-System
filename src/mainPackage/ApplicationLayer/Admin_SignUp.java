@@ -10,10 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -26,6 +30,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.plaf.LayerUI;
 import javax.swing.text.JTextComponent;
@@ -56,6 +61,7 @@ public class Admin_SignUp {
 	private String joinDate;
 	Admin_Handler aH;
 	
+	final static Border textFieldBorder = BorderFactory.createLineBorder(Color.ORANGE,2);
 	final static Color myblue = new Color(6, 13, 83);
 	final static Color mygrey = new Color(42, 42, 42);
 	final static Color myred = new Color(75, 25, 27);
@@ -67,6 +73,8 @@ public class Admin_SignUp {
 	//Person_ID,Person_Name,CNIC,Age,Address,Gender,Nationality,Phone_No,Passport_No
 	public Admin_SignUp() {
 		aH = new Admin_Handler();
+		AdminID = aH.GenerateAdmID();
+		
 		f5 = new JFrame("Admin SignUp");
 		l1 = new JLabel("Admin ID : ");
 		l2 = new JLabel("Admin Name  : ");
@@ -78,7 +86,7 @@ public class Admin_SignUp {
 		l8 = new JLabel("Nationality : ");
 		l9 = new JLabel("Phone No : ");
 		l10 = new JLabel("Passport No : ");
-		lempID = new JLabel();
+		lempID = new JLabel(AdminID, SwingConstants.CENTER);
 		tName = new JTextField();
 		tCnic = new JTextField();
 		tAge = new JTextField();
@@ -87,8 +95,32 @@ public class Admin_SignUp {
 		tPhone = new JTextField();
 		tPassport = new JTextField();
 		
+		pf1 = new JPasswordField();
+		ta1 = new JTextArea();
+		
+		l1.setForeground(Color.WHITE);
+		l2.setForeground(Color.WHITE);
+		l3.setForeground(Color.WHITE);
+		l4.setForeground(Color.WHITE);
+		l5.setForeground(Color.WHITE);
+		l6.setForeground(Color.WHITE);
+		l7.setForeground(Color.WHITE);
+		l8.setForeground(Color.WHITE);
+		l9.setForeground(Color.WHITE);
+		l10.setForeground(Color.WHITE);
 		//new code for error msgs
 		
+		tName.setBorder(textFieldBorder);
+		tCnic.setBorder(textFieldBorder);
+		tAge.setBorder(textFieldBorder);
+		tGender.setBorder(textFieldBorder);
+		tNationality.setBorder(textFieldBorder);
+		tPhone.setBorder(textFieldBorder);
+		tPassport.setBorder(textFieldBorder);
+		ta1.setBorder(textFieldBorder);
+		pf1.setBorder(textFieldBorder);
+		
+		lempID.setBorder(textFieldBorder);
 
 		ecnic=new JLabel("Format xxxx-xxxxxxx-x");
 		ephone=new JLabel("Format xxxx-xxxxxxx");
@@ -122,12 +154,6 @@ public class Admin_SignUp {
 		
 		
 		
-		
-		
-		
-		pf1 = new JPasswordField();
-		ta1 = new JTextArea();
-		
 		b1 = new JButton("Create");
 		b2 = new JButton("Back");
 		b3 = new JButton("Clear");
@@ -158,24 +184,23 @@ public class Admin_SignUp {
 		b2.setBounds(270, 620, 120, 30);
 		b3.setBounds(460, 620, 120, 30);
 		//sp1.setBounds(250, 260, 300, 40);
-		/*
-		l1.setFont(LABELFONT);
-		l2.setFont(LABELFONT);
-		l3.setFont(LABELFONT);
-		l4.setFont(LABELFONT);
-		l5.setFont(LABELFONT);
-		l6.setFont(LABELFONT);
-		l7.setFont(LABELFONT);
+		BufferedImage myImage = null;
 		
-		//BufferedImage myImage = null;
-		//try {
-		//	myImage = ImageIO.read(new File("C:/image12.jpg"));
-		//} catch (IOException e) {
+		try {
+			String image = "Asignup1.jpg";
+		    String workingDirectory = System.getProperty("user.dir");
+		    String requiredDirectory = workingDirectory + "/" + "src/mainPackage/images/"
+		            + image;
+		    
+		    System.out.println(requiredDirectory);
+			//String path = mainPackage.images->class.getResource("mainScreen.jpg").getPath();
+			myImage = ImageIO.read(new File(requiredDirectory));
+			//myImage = WelcomeScreenAndLogin.resize(myImage, 720,600);
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
-		//f5.setContentPane(new ImagePanel(myImage));
-		*/
+			e.printStackTrace();
+		}
+		f5.setContentPane(new ImagePanel(myImage));
 		f5.setLayout(null);
 		f5.setSize(640, 700);
 		f5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -216,8 +241,7 @@ public class Admin_SignUp {
 		f5.add(b3);
 		f5.add(sp1);
 		f5.setVisible(true);
-		AdminID = aH.GenerateAdmID();
-		lempID.setText(AdminID);
+		
 		b1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent ae) {
