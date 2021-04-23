@@ -8,19 +8,25 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 
 public class Admin_AddFlight {
 
 	JFrame f8;
-	JLabel l1, l2, l3, l4, l5, l6, l7, l8;
+	JLabel l1, l2, l3, l4, l5, l6, l7, l8, ePrice, eDate;
 	JTextField tf1, tf2, tf3, tf4, tf5;
 	JComboBox<String> list1, list2, list3, planeList, listDepart, listArrival;
 	JButton b1, b2;
@@ -65,6 +71,19 @@ public class Admin_AddFlight {
 		//tf5 = new JTextField();
 		b1 = new JButton("OK");
 		b2 = new JButton("Cancel");
+		
+		//// adding validation
+		ePrice=new JLabel("Should be a number!");
+		ePrice.setBounds(200, 132,200 , 15);
+		ePrice.setFont(Admin_SignUp.ERRORFORMAT);
+		ePrice.setForeground(Color.RED);
+		ePrice.setVisible(false);
+		
+		eDate=new JLabel("Correct Format: (DD/MM/YYYY)");
+		eDate.setBounds(200, 252,200 , 15);
+		eDate.setFont(Admin_SignUp.ERRORFORMAT);
+		eDate.setForeground(Color.RED);
+		eDate.setVisible(false);
 		
 		l1.setBounds(30, 30, 120, 25);
 		l2.setBounds(30, 70, 120, 25);
@@ -118,6 +137,8 @@ public class Admin_AddFlight {
 		f8.add(b1);
 		f8.add(b2);
 		
+		f8.add(ePrice);
+		
 		f8.setLayout(null);
 		f8.setSize(500, 450);
 		f8.setLocation((1366-420)/2, (768-450)/2);
@@ -138,7 +159,7 @@ public class Admin_AddFlight {
 					}
 				}
 				else{
-					JOptionPane.showMessageDialog(f8, "Fill All the Details in the Form",
+					JOptionPane.showMessageDialog(f8, "Fill All the Details in the Form correctly!",
 							"ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -278,6 +299,18 @@ public class Admin_AddFlight {
 		basePrice = tf2.getText();
 		source = (String) list2.getSelectedItem();
 		destination = (String) list3.getSelectedItem();
+		
+		try {
+			Integer.parseInt(basePrice);
+			ePrice.setVisible(false);
+			tf2.setBorder(null);
+		}
+		catch (Exception e) {
+			ePrice.setVisible(true);
+			Border border = BorderFactory.createLineBorder(Color.RED,2);
+			tf2.setBorder(border);
+			return false;
+		}
 		if (source.equals(destination)) {
 			JOptionPane.showMessageDialog(f8, "SOURCE AND DESTINATION CAN NOT BE SAME",
 					"ERROR", JOptionPane.ERROR_MESSAGE);
@@ -290,12 +323,21 @@ public class Admin_AddFlight {
 				flights.Create_Route(source, destination, duration);
 			}
 		}
-		try {
 		dates = tf3.getText();
-		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(f8, "Invalid date",
-					"ERROR", JOptionPane.ERROR_MESSAGE);
-			return false;
+		try {
+		    DateTimeFormatter formatter =
+		                      DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		    LocalDate date = LocalDate.parse(dates, formatter);
+		    System.out.printf("%s%n", date);
+		    eDate.setVisible(false);
+			tf3.setBorder(null);
+		}
+		catch (DateTimeParseException exc) {
+		    System.out.printf("%s is not parsable!%n", dates);
+		    eDate.setVisible(true);
+			Border border = BorderFactory.createLineBorder(Color.RED,2);
+			tf3.setBorder(border);
+		    return false;
 		}
 		//departure = tf4.getText();
 		//arrival = tf5.getText();
@@ -317,5 +359,18 @@ public class Admin_AddFlight {
 			return false;
 		else
 			return true;
+	}
+	
+	private boolean isDateValid(String dateString, String pattern)
+	{   
+	    try
+	    {
+	        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+	        if (sdf.format(sdf.parse(dateString)).equals(dateString))
+	            return true;
+	    }
+	    catch (Exception pe) {}
+
+	    return false;
 	}
 }
