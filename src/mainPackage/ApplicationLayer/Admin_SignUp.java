@@ -36,6 +36,8 @@ public class Admin_SignUp {
 	JFrame f5 ;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, lempID, signup_label;
 	JTextField tName, tAge, tCnic, tPhone, tGender, tNationality, tPassport;
+	//new code 
+		JLabel ecnic,ephone,epassport,egender,eage;
 	JPasswordField pf1;
 	JTextArea ta1;
 	JButton b1, b2, b3;
@@ -60,6 +62,7 @@ public class Admin_SignUp {
 	final static Color mypurp = new Color(106,13,173);
 	
 	final static Font LABELFONT = new Font("Bradley Hand ITC", Font.BOLD, 20);
+	final static Font ERRORFORMAT = new Font("Verdana",Font.ITALIC,10);
 	// Person_ID,Assistant_ID,Assistant_Password,Join_Date
 	//Person_ID,Person_Name,CNIC,Age,Address,Gender,Nationality,Phone_No,Passport_No
 	public Admin_SignUp() {
@@ -83,6 +86,44 @@ public class Admin_SignUp {
 		tNationality = new JTextField();
 		tPhone = new JTextField();
 		tPassport = new JTextField();
+		
+		//new code for error msgs
+		
+
+		ecnic=new JLabel("Format xxxx-xxxxxxx-x");
+		ephone=new JLabel("Format xxxx-xxxxxxx");
+		egender=new JLabel("Enter M or F");
+		eage=new JLabel("Should be a number!");
+		epassport=new JLabel("Format: 9 digit number only");
+		
+		ecnic.setBounds(200, 232,200 , 15);
+		ephone.setBounds(200,552,200 , 15);
+		egender.setBounds(200,452,200 , 15);
+		eage.setBounds(200, 402,200 , 15);
+		epassport.setBounds(200,602,200 , 15);
+		
+		ecnic.setFont(ERRORFORMAT);
+		ephone.setFont(ERRORFORMAT);
+		egender.setFont(ERRORFORMAT);
+		eage.setFont(ERRORFORMAT);
+		epassport.setFont(ERRORFORMAT);
+		
+		ecnic.setForeground(Color.RED);
+		ephone.setForeground(Color.RED);
+		egender.setForeground(Color.RED);
+		eage.setForeground(Color.RED);
+		epassport.setForeground(Color.RED);
+		
+		ecnic.setVisible(false);
+		ephone.setVisible(false);
+		egender.setVisible(false);
+		eage.setVisible(false);
+		epassport.setVisible(false);
+		
+		
+		
+		
+		
 		
 		pf1 = new JPasswordField();
 		ta1 = new JTextArea();
@@ -163,6 +204,12 @@ public class Admin_SignUp {
 		f5.add(tNationality);
 		f5.add(tGender);
 		f5.add(tPassport);
+		
+		f5.add(ecnic);
+		f5.add(ephone);
+		f5.add(egender);
+		f5.add(eage);
+		f5.add(epassport);
 		
 		f5.add(b1);
 		f5.add(b2);
@@ -379,23 +426,33 @@ public class Admin_SignUp {
 
 	}
 	
+	
+	
 	@SuppressWarnings("deprecation")
 	public boolean initializeDetails() {
 		boolean val=false;
 		boolean pb=false;
 		boolean cb=false, psb=false,gb=false;
+		
+		
 		Vector<Boolean> vec = new Vector<Boolean>();
 		Border border = BorderFactory.createLineBorder(Color.RED);
 		try {
 			age = Integer.parseInt(tAge.getText());
 			tAge.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-			f5.add(tAge);
+			
+			
+			eage.setVisible(false);
+			
 			val=true;
 		}
 		catch(Exception e) {
 			//JOptionPane.showMessageDialog(f5, "Enter Valid Age", "Error", JOptionPane.ERROR_MESSAGE);
 			tAge.setBorder(border);
-			f5.add(tAge);
+			
+			//(200, 370, 300, 30)
+			eage.setVisible(true);
+			
 			val= false;
 			vec.add(val);
 		}
@@ -413,11 +470,17 @@ public class Admin_SignUp {
 //	    numberPanel.add(new JLayer<JFormattedTextField>((JFormattedTextField) tCnic, layerUI));
 //	    f5.add(numberPanel)
 		//validating phone number
+		
+		
+		
 		pb=validatePhoneNumber(phone);
 		if(pb) {
 			System.out.println("correct phone");
 			tPhone.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-			f5.add(tPhone);
+			
+			
+			ephone.setVisible(false);
+			
 			val=true;
 			vec.add(val);
 			
@@ -427,8 +490,9 @@ public class Admin_SignUp {
 			//l9.setBorder(border);
 			//f5.add(l9);
 			tPhone.setBorder(border);
-			f5.add(tPhone);
-			//JOptionPane.showMessageDialog(f5, "Enter Valid PhoneNumber", "Error", JOptionPane.ERROR_MESSAGE);
+			
+			//(200,520,300,30)
+			ephone.setVisible(true);
 			
 			val=false;
 			vec.add(val);
@@ -439,15 +503,21 @@ public class Admin_SignUp {
 		if(cb) {
 			System.out.println("correct cnic");
 			tCnic.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-			f5.add(tCnic);
+			
+			ecnic.setVisible(false);
+			
 			val=true;
 			vec.add(val);
 			
 		}
 		else {
 			System.out.println("invalid cnic");
+			
+			ecnic.setVisible(true);
+			
 			tCnic.setBorder(border);
-			f5.add(tCnic);
+			
+			
 			//JOptionPane.showMessageDialog(f5, "Enter Valid CNIC", "Error", JOptionPane.ERROR_MESSAGE);
 			val=false;
 			vec.add(val);
@@ -458,7 +528,9 @@ public class Admin_SignUp {
 		if(psb) {
 			System.out.println("correct passport");
 			tPassport.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-			f5.add(tPassport);
+			
+			epassport.setVisible(false);
+			
 			val=true;
 			vec.add(val);
 			
@@ -466,8 +538,12 @@ public class Admin_SignUp {
 		else {
 			System.out.println("invalid passport");
 			tPassport.setBorder(border);
-			f5.add(tPassport);
+			
 			//JOptionPane.showMessageDialog(f5, "Enter Valid PassportNumber", "Error", JOptionPane.ERROR_MESSAGE);
+			//200,570,300,30)
+			
+			epassport.setVisible(true);
+			
 			val=false;
 			vec.add(val);
 			
@@ -477,7 +553,10 @@ public class Admin_SignUp {
 		if(gb) {
 			System.out.println("correct gender");
 			tGender.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-			f5.add(tGender);
+			
+			
+			egender.setVisible(false);
+			
 			val=true;
 			vec.add(val);
 			
@@ -485,18 +564,14 @@ public class Admin_SignUp {
 		else {
 			System.out.println("invalid gender");
 			tGender.setBorder(border);
-			f5.add(tGender);
-			//JOptionPane.showMessageDialog(f5, "Enter Valid Gender", "Error", JOptionPane.ERROR_MESSAGE);
+			
+			egender.setVisible(true);
+			
 			val=false;
 			vec.add(val);
 			
 		}
-//		}
-//		catch(Exception e) {
-//			JOptionPane.showMessageDialog(f5, "Enter Valid Details", "Error", JOptionPane.ERROR_MESSAGE);
-//			val= false;
-//			vec.add(val);
-//		}
+
 		
 		if(vec.contains(false)) {
 			val=false;
