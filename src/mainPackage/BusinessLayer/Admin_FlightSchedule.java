@@ -136,5 +136,45 @@ public class Admin_FlightSchedule {
     	}
 		return flightlist;
 	}
+	
+	public ArrayList<String[]> ViewSched(String choice) {
+		ArrayList<String[]> flightlist = new ArrayList<String[]>();
+		
+		Vector<String> flightsV = new Vector<String>(11);
+		ResultSet rs = null;
+		try {
+			rs = FRS_DataBase.ExecuteQueryRS("SELECT * FROM FRS_AVAILABLE_FLIGHTS order by " + choice);
+			ResultSetMetaData rsm = rs.getMetaData();
+			int col = rsm.getColumnCount();
+			
+			while (rs.next()) {
+				String[] flights = new String[11];
+				for (int i=1; i<=col; i++) {
+					flightsV.addElement(rs.getString(i));
+				}
+				for (int j=0; j<flightsV.size(); j++) {
+					
+					flights[j] = flightsV.elementAt(j);
+					System.out.println(flights[j]);
+				
+				}
+				flightsV.clear();
+				flightlist.add(flights);
+				
+			}
+			
+			
+			}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+			
+		for(int i = 0; i<flightlist.size(); i++) {
+			for (int j=0; j<flightlist.get(i).length; j++)
+				System.out.println(flightlist.get(i)[j]);
+    		
+    	}
+		return flightlist;
+	}
 		
 }

@@ -41,6 +41,9 @@ public class Admin_Handler {
 	public ArrayList<String[]> ViewSched() {
 		return sD.ViewSched();
 	}
+	public ArrayList<String[]> ViewSched(String choice) {
+		return sD.ViewSched(choice);
+	}
 	
 	public String[] getAllFlightIDs() {
 		return sD.getFlightIDs();
