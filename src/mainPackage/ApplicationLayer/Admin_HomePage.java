@@ -27,8 +27,8 @@ import mainPackage.BusinessLayer.Admin_Handler;
 class Admin_HomePage {
 
 	JFrame f4;
-	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11;
-	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l10;
+	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12;
+	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l10, l11;
 	JPasswordField pf1, pf2, pf3;
 	JPanel p1;
 	JPanel p2, p4;
@@ -61,6 +61,7 @@ class Admin_HomePage {
 		b8 = new JButton("Add Flight");
 		b9 = new JButton("Delete Flight");
 		b10 = new JButton("View Flights");
+		b12 = new JButton("Update Flights");
 		b11 = new JButton("Change Password");
 		
 		
@@ -73,6 +74,7 @@ class Admin_HomePage {
 		l7 = new JLabel();
 		l8 = new JLabel();
 		l10 = new JLabel();
+		l11 = new JLabel();
 		
 		pf1 = new JPasswordField();
 		pf2 = new JPasswordField();
@@ -86,8 +88,9 @@ class Admin_HomePage {
 		l5.setBounds(310, 150, 150, 150);
 		l6.setBounds(520, 150, 150, 150);
 		l7.setBounds(100, 150, 150, 150);
-		l8.setBounds(310, 150, 150, 150);
-		l10.setBounds(520, 150, 150, 150);
+		l8.setBounds(210, 150, 150, 150);
+		l10.setBounds(320, 150, 150, 150);
+		l11.setBounds(430, 150, 150, 150);
 		String imageName1 = "createEmp.png";
 		String imageName2 = "deleteEmp.png";
 		String imageName3 = "viewEmp.png";
@@ -104,6 +107,7 @@ class Admin_HomePage {
 		l7.setIcon(new ImageIcon(ImageIO.read(new File(requiredDirectory+imageName4))));
 		l8.setIcon(new ImageIcon(ImageIO.read(new File(requiredDirectory+imageName5))));
 		l10.setIcon(new ImageIcon(ImageIO.read(new File(requiredDirectory+imageName7))));
+		l11.setIcon(new ImageIcon(ImageIO.read(new File(requiredDirectory+imageName1))));
 		}catch(IOException ex) {
 			ex.printStackTrace();
 		}
@@ -117,9 +121,10 @@ class Admin_HomePage {
 		b5.setBounds(70, 300, 150, 30);
 		b6.setBounds(280, 300, 150, 30);
 		b7.setBounds(490, 300, 150, 30);
-		b8.setBounds(70, 300, 150, 30);
-		b9.setBounds(280, 300, 150, 30);
-		b10.setBounds(490, 300, 150, 30);
+		b8.setBounds(70, 300, 110, 30);
+		b9.setBounds(190, 300, 110, 30);
+		b10.setBounds(310, 300, 110, 30);
+		b12.setBounds(430, 300, 110, 30);
 		p1.setBounds(0, 0, 700, 400);
 		p2.setBounds(0, 0, 700, 400);
 		p4.setBounds(0, 120, 700, 300);
@@ -160,9 +165,11 @@ class Admin_HomePage {
 		p2.add(b8);
 		p2.add(b9);
 		p2.add(b10);
+		p2.add(b12);
 		p2.add(l7);
 		p2.add(l8);
 		p2.add(l10);
+		p2.add(l11);
 		p4.add(l1);
 		p4.add(l2);
 		p4.add(l3);
@@ -251,6 +258,14 @@ class Admin_HomePage {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
 				new Admin_DeleteFlight();
+			}
+		});
+		
+		//Update Flight
+		b12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				WelcomeScreenAndLogin.buttonSound();
+				new Admin_UpdateBooking();
 			}
 		});
 		
@@ -664,6 +679,46 @@ class Admin_HomePage {
 				b10.setForeground(Color.BLACK);
 				b10.setCursor(null);
 				b10.setOpaque(false);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		b12.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				b12.setBorderPainted(false);
+				b12.setOpaque(true);
+				b12.setBackground(myred);
+				b12.setForeground(Color.WHITE);
+				b12.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				b12.setBorderPainted(true);
+				b12.setBackground(Color.WHITE);
+				b12.setForeground(Color.BLACK);
+				b12.setCursor(null);
+				b12.setOpaque(false);
 			}
 
 			@Override
