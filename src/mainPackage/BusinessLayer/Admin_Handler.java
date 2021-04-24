@@ -49,11 +49,29 @@ public class Admin_Handler {
 	public String getPlaneName(String Flight_ID) {
 		return sD.getPlaneName(Flight_ID);
 	}
+	public String getRouteID(String Flight_ID) {
+		return sD.getRoute(Flight_ID);
+	}
 	
 	public String getSource(String Flight_ID) {
 		return sD.getSrc(Flight_ID);
 	}
 	
+	public String getDeptTime(String Flight_ID) {//getDate 
+		return sD.getdeptime(Flight_ID);
+	}
+	public String getArrivalTime(String Flight_ID) {
+		return sD.getarrTime(Flight_ID);
+	}
+	public String getDate(String Flight_ID) {
+		return sD.getdate(Flight_ID);
+	}
+	public String getBaseAmount(String Flight_ID) {
+		return sD.getbamount(Flight_ID);
+	}
+	public String getArrivalStatus(String Flight_ID) {
+		return sD.getarrStatus(Flight_ID);
+	}
 	public String getDest(String Flight_ID) {
 		return sD.getDest(Flight_ID);
 	}
@@ -79,6 +97,10 @@ public class Admin_Handler {
 	public boolean AddEmployee(String empID, String name, String pass, long cnic, int age, String gender, String address, String joindate, String nation, long phone, long passport) {
 		return eH.AddEmployee(empID, name, pass, cnic, age, gender, address, joindate, nation, phone, passport);
 	}
+	public boolean UpdateFlight(String flightID, String deptTime, String arriveTime, String Date, String Baseamount) {
+		return editFlight.UpdateFlight(flightID, deptTime, arriveTime, Date, Baseamount);
+	}
+	
 	public String[] getAllEmployeeIDs() {
 		return eH.getAllEmployeeIDs();
 	}

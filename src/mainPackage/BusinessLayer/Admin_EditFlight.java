@@ -21,5 +21,12 @@ public class Admin_EditFlight {
 				return false;
 		return FRS_DB.ExecuteUpdate("DELETE FROM FRS_FLIGHT_SCHEDULE WHERE FLIGHT_ID = '"+Flight_ID+"'");
 	}
-	
+	//UpdateBooking
+	protected boolean UpdateFlight(String flightID, String deptTime, String arriveTime, String Date, String Baseamount) {
+//		String q = "UPDATE FRS_FLIGHT_SCHEDULE SET Flight_Date = '"+Date+"', Time_Of_Depart = '"+deptTime+"', Time_Of_Arrival = '"+arriveTime+"', Base_Amount = '"
+//	+Baseamount+"', WHERE PASSENGER_ID = '"+flightID+"'";
+//		
+//		return FRS_DB.ExecuteUpdate(q);
+		return false;
+	}
 }

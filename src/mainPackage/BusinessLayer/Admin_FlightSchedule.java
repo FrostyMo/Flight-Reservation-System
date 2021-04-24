@@ -58,6 +58,23 @@ public class Admin_FlightSchedule {
 		
 		return PlaneName;
 	}
+	protected String getRoute(String Flight_ID) {
+		String RouteID = "";
+		
+		ResultSet rs = null;
+		try {
+			rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.ROUTE_ID FROM FRS_FLIGHT_SCHEDULE FS WHERE FS.FLIGHT_ID = '"+Flight_ID+"' ");
+			rs.next();
+			return rs.getString("FS.ROUTE_ID");
+			
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+			
+		
+		return RouteID;
+	}
 	
 	protected String getSrc(String Flight_ID) {
 		
@@ -96,7 +113,101 @@ public class Admin_FlightSchedule {
 		
 		return "";
 	}
-	
+	//getdeptime
+	protected String getdeptime(String Flight_ID) {
+			
+			
+			ResultSet rs = null;
+			try {
+				rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Time_Of_Depart FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+				rs.next();
+				System.out.println(rs.getString("R.Time_Of_Depart"));
+				return rs.getString("R.Time_Of_Depart");
+				
+			}
+			catch (Exception exc) {
+				exc.printStackTrace();
+			}
+				
+			
+			return "";
+		}
+	//getarrTime
+	protected String getarrTime(String Flight_ID) {
+		
+		
+		ResultSet rs = null;
+		try {
+			rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Time_Of_Arrival FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+			rs.next();
+			System.out.println(rs.getString("R.Time_Of_Arrival"));
+			return rs.getString("R.Time_Of_Arrival");
+			
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+			
+		
+		return "";
+	}
+	//getdate
+	protected String getdate(String Flight_ID) {
+			
+			
+			ResultSet rs = null;
+			try {
+				rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Flight_Date FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+				rs.next();
+				System.out.println(rs.getString("R.Flight_Date"));
+				return rs.getString("R.Flight_Date");
+				
+			}
+			catch (Exception exc) {
+				exc.printStackTrace();
+			}
+				
+			
+			return "";
+		}
+	//getbamount
+	protected String getbamount(String Flight_ID) {
+		
+		
+		ResultSet rs = null;
+		try {
+			rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Base_Amount FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+			rs.next();
+			System.out.println(rs.getString("R.Base_Amount"));
+			return rs.getString("R.Base_Amount");
+			
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+			
+		
+		return "";
+	}
+	//getarrStatus
+	protected String getarrStatus(String Flight_ID) {
+			
+			
+			ResultSet rs = null;
+			try {
+				rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Status_Complete FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+				rs.next();
+				System.out.println(rs.getString("R.Status_Complete"));
+				return rs.getString("R.Status_Complete");
+				
+			}
+			catch (Exception exc) {
+				exc.printStackTrace();
+			}
+				
+			
+			return "";
+		}
 	public ArrayList<String[]> ViewSched() {
 		ArrayList<String[]> flightlist = new ArrayList<String[]>();
 		

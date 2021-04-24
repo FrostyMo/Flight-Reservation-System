@@ -27,14 +27,13 @@ public class Admin_UpdateBooking {
 	JButton b1, b2, b3;
 	private String flightID;
 	private String PlaneID;
+	private String RouteID;
 	private String from;
 	private String to;
 	private String deptTime;
 	private String arvTime;
 	private String Date;
 	private String Baseamount;
-	private String TotalSeats;
-	private String availableSeats;
 	private String arrivalStatus;
 	Admin_Handler flightObj;
 	public  Admin_UpdateBooking () {
@@ -192,20 +191,7 @@ public class Admin_UpdateBooking {
 			}
 			
 		});
-		listPassengerID.addItemListener(new ItemListener(){
-			@Override
-			public void itemStateChanged(ItemEvent arg1) {
-				WelcomeScreenAndLogin.buttonSound();
-				// TODO Auto-generated method stub
-				//System.out.println(listBookingID.getSelectedIndex());
-				if(listPassengerID.getSelectedItem()!="None" && arg1.getStateChange() == ItemEvent.SELECTED) {
-					initializePassengerDetails();
-				}
-				else {
-					clearPassengerLabels();
-				}
-			}
-		});
+		
 		
 		
 		b2.addMouseListener(new MouseListener() {
@@ -304,17 +290,59 @@ public class Admin_UpdateBooking {
 			}
 			
 		}
+		protected void setInfoLabels() {
+			// TODO Auto-generated method stub
+			clearLabels();
+			l2Input.setText(PlaneID);
+			l3Input.setText(RouteID);
+			l4Input.setText(from);
+			l5Input.setText(to);
+			l10Input.setText(arrivalStatus);
+		}
+		protected void initializeDetails() 
+		{
+
+			flightID = (String) listFlightID.getSelectedItem();
+			from = flightObj.getSource(flightID);
+			to = flightObj.getDest(flightID);
+			PlaneID = flightObj.getPlaneName(flightID);
+			RouteID = flightObj.getRouteID(flightID);
+			deptTime = flightObj.getDeptTime(flightID);
+			arvTime = flightObj.getArrivalTime(flightID);
+			Date = flightObj.getDate(flightID);
+			Baseamount = flightObj.getBaseAmount(flightID);
+			arrivalStatus = flightObj.getArrivalStatus(flightID);
+			setInfoLabels();
+			
+		}
+		private void clearLabels() {
+			l3Input.setText("");
+			l4Input.setText("");
+			l2Input.setText("");
+			l6Input.setText("");
+			l9Input.setText("");
+			listPassengerID.setSelectedItem("");
+			listMeal.setSelectedItem("");
+			listSeat.setSelectedItem("");
+			listClass.setSelectedItem("");
+			listCheckin.setSelectedItem("");
+		}
+		protected boolean updateRecord() {
+			deptTime = l6Input.getText();
+			arvTime = l7Input.getText();
+			Date = l8Input.getText();
+			Baseamount = l9Input.getText();
+			return flightObj.UpdateFlight(flightID, deptTime, arvTime, Date, Baseamount);
+		}
 		
 		private boolean validateForm() {
 			// TODO Auto-generated method stub
 			if((((String)listFlightID.getSelectedItem()).length())==0||
-					((String) listClass.getSelectedItem()).length()==0||
-					(l2Input.getText().length())==0
-					||((String) listPassengerID.getSelectedItem()).length()==0
-					||((String) listMeal.getSelectedItem()).length()==0||
-					((String) listSeat.getSelectedItem()).length()==0||
-					((String) listCheckin.getSelectedItem()).length()==0||(l3Input.getText().length())==0||(l4Input.getText().length())==0
-					||(l6Input.getText().length())==0||(l9Input.getText().length())==0)
+					(l2Input.getText().length())==0||
+				(l3Input.getText().length())==0||(l4Input.getText().length())==0
+					||(l5Input.getText().length())==0||(l6Input.getText().length())==0||
+							(l7Input.getText().length())==0||(l8Input.getText().length())==0||
+									(l10Input.getText().length())==0||(l9Input.getText().length())==0)
 				return false;
 			else
 				return true;
