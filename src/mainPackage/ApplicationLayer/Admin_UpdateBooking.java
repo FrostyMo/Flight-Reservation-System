@@ -1,19 +1,33 @@
 package mainPackage.ApplicationLayer;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import mainPackage.BusinessLayer.Admin_Handler;
 import mainPackage.BusinessLayer.Customer_Handler;
@@ -21,8 +35,9 @@ import mainPackage.BusinessLayer.Customer_Handler;
 public class Admin_UpdateBooking {
 	private static final String NullPointerException = null;
 	JFrame f9;
+	JPanel myPanel;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11;
-	
+	JLabel formatDeptTime, formatArrTime, formatDate, formatPrice;
 	JTextField l2Input, l3Input, l4Input, l5Input, l6Input, l7Input, l8Input, l10Input, l9Input;
 	JComboBox<String> listFlightID, listMeal, listSeat, listClass, listCheckin;
 	JButton b1, b2, b3;
@@ -31,28 +46,35 @@ public class Admin_UpdateBooking {
 	private String RouteID;
 	private String from;
 	private String to;
-	private String deptTime;
-	private String arvTime;
-	private String Date;
-	private String Baseamount;
-	private String arrivalStatus;
+	private String deptTime, deptTimeCopy;
+	private String arvTime, arvTimeCopy;
+	private String Date, DateCopy;
+	private String Baseamount, BaseamountCopy;
+	private String arrivalStatus, arrivalStatusCopy;
 	Admin_Handler flightObj;
 	public  Admin_UpdateBooking () {
 		f9 = new JFrame("Update Flight");
-		l1 = new JLabel("Select Flight ID : ");
-		l2 = new JLabel("Plane ID : ");
-		l3 = new JLabel("RouteID : ");
-		l4 = new JLabel("From : ");
-		l5 = new JLabel("To : ");
-		l6 = new JLabel("DepartureTime: ");
-		l7 = new JLabel("ArrivalTime: ");
-		l8 = new JLabel("Date : ");
-		l9 = new JLabel("Base Amount : ");
-		l10 = new JLabel("Arrival Status: ");
-//		String ar1[]={"", "Opt1", "Opt2", "Opt3", "Opt4"};
-//		String ar2[]= {"", "1", "2", "3", "4"};
-//		String ar3[]= {"", "Economy", "Business"};
-//		String ar4[] = {"", "Yes", "No"};
+		l1 = new JLabel("<html><span style='size: 14'><b>Select Flight ID : </b></span></html>");
+		l2 = new JLabel("<html><span style='size: 14'><b>Plane ID : </b></span></html>");
+		l3 = new JLabel("<html><span style='size: 14'><b>RouteID : </b></span></html>");
+		l4 = new JLabel("<html><span style='size: 14'><b>From : </b></span></html>");
+		l5 = new JLabel("<html><span style='size: 14'><b>To : </b></span></html>");
+		l6 = new JLabel("<html><span style='size: 14'><b>DepartureTime: </b></span></html>");
+		l7 = new JLabel("<html><span style='size: 14'><b>ArrivalTime: </b></span></html>");
+		l8 = new JLabel("<html><span style='size: 14'><b>Date : </b></span></html>");
+		l9 = new JLabel("<html><span style='size: 14'><b>Base Amount : </b></span></html>");
+		l10 = new JLabel("<html><span style='size: 14'><b>Arrival Status: </b></span></html>");
+		
+		
+		myPanel = Admin_HomePage.adminPanel();
+		myPanel.setLayout(null);
+		f9.getContentPane().setBackground(new Color(0,0,0,0));
+		//// Format validation
+		formatDeptTime = new JLabel("Correct format is 00:00");
+		formatArrTime = new JLabel("Correct format is 00:00");
+		formatDate = new JLabel("Correct format is DD/MM/YYYY");
+		formatPrice = new JLabel("Must be Numerical only");
+
 		
 		l2Input = new JTextField();
 		l3Input = new JTextField();
@@ -80,6 +102,17 @@ public class Admin_UpdateBooking {
 		l8.setBounds(30, 390, 150, 30);		// DATE
 		l9.setBounds(30, 440, 150, 30);		// BASE AMOUNT
 		l10.setBounds(30, 490, 150, 30);	// ARRRIVAL STATUS
+		
+		l1.setForeground(Admin_SignUp.mypurp);		// Flight ID 	
+		l2.setForeground(Admin_SignUp.mypurp);	// PLANE ID
+		l3.setForeground(Admin_SignUp.mypurp);	// ROUTE ID
+		l4.setForeground(Admin_SignUp.mypurp);		// SOURCE
+		l5.setForeground(Admin_SignUp.mypurp);		// DESTINATION 
+		l6.setForeground(Admin_SignUp.mypurp);		// DEPT TIME
+		l7.setForeground(Admin_SignUp.mypurp);		// ARRIVAL TIME
+		l8.setForeground(Admin_SignUp.mypurp);		// DATE
+		l9.setForeground(Admin_SignUp.mypurp);		// BASE AMOUNT
+		l10.setForeground(Admin_SignUp.mypurp);	// ARRRIVAL STATUS
 		//l11.setBounds(30, 540, 150, 30);	// CHECK IN		** WILL BE A LIST **
 		
 		listFlightID.setBounds(220, 40, 200, 30);
@@ -87,47 +120,77 @@ public class Admin_UpdateBooking {
 		l3Input.setBounds(220, 140, 200, 30);
 		l4Input.setBounds(220, 190, 200, 30);
 		l5Input.setBounds(220, 240, 200, 30);
-		l6Input.setBounds(220, 290, 200, 30);
+		l6Input.setBounds(220, 290, 200, 30);	// DEPT TIME
 		l7Input.setBounds(220, 340, 200, 30);
 		l8Input.setBounds(220, 390, 200, 30);
-		l9Input.setBounds(220, 440, 200, 30);
+		l9Input.setBounds(220, 440, 200, 30);	// BASE AMOUNT
 		l10Input.setBounds(220, 490, 200, 30);
 		//listCheckin.setBounds(220, 540, 200, 30);
 		
+		//// Formating validations 
+		formatDeptTime.setBounds(220, 322, 200, 15);
+		formatArrTime.setBounds(220, 372, 200, 15);
+		formatDate.setBounds(220, 422, 200, 15);
+		formatPrice.setBounds(220, 472, 200, 15);
+		
+		formatDeptTime.setFont(Admin_SignUp.ERRORFORMAT);
+		formatArrTime.setFont(Admin_SignUp.ERRORFORMAT);
+		formatDate.setFont(Admin_SignUp.ERRORFORMAT);
+		formatPrice.setFont(Admin_SignUp.ERRORFORMAT);
+		
+//		formatDeptTime.setForeground(Color.RED);
+//		formatArrTime.setForeground(Color.RED);
+//		formatDate.setForeground(Color.RED);
+//		formatPrice.setForeground(Color.RED);
+		
+		formatDeptTime.setVisible(false);
+		formatArrTime.setVisible(false);
+		formatDate.setVisible(false);
+		formatPrice.setVisible(false);
+		
+		////
+		
 		System.out.println("Imhere hi");
 		//b1.setBounds(40, 640, 150, 30);
-		b2.setBounds(240, 640, 150, 30);
-		b3.setBounds(440, 640, 150, 30);
+		b2.setBounds(120, 550, 150, 30);
+		b3.setBounds(340, 550, 150, 30);
 		
 		getFlights();
-		f9.add(l1);
-		f9.add(l2);
-		f9.add(l3);
-		f9.add(l4);
-		f9.add(l5);
-		f9.add(l6);
-		f9.add(l7);
-		f9.add(l8);
-		f9.add(l9);
-		f9.add(l10);
-		f9.add(l2Input);
-		f9.add(l3Input);
-		f9.add(l4Input);
-		f9.add(l6Input);
-		f9.add(l9Input);
-		f9.add(listFlightID);
-		f9.add(l5Input);
-		f9.add(l7Input);
-		f9.add(l8Input);
-		f9.add(l10Input);
-		f9.add(b2);
-		f9.add(b3);
+		myPanel.add(l1);
+		myPanel.add(l2);
+		myPanel.add(l3);
+		myPanel.add(l4);
+		myPanel.add(l5);
+		myPanel.add(l6);
+		myPanel.add(l7);
+		myPanel.add(l8);
+		myPanel.add(l9);
+		myPanel.add(l10);
+		myPanel.add(l2Input);
+		myPanel.add(l3Input);
+		myPanel.add(l4Input);
+		myPanel.add(l6Input);
+		myPanel.add(l9Input);
+		myPanel.add(listFlightID);
+		myPanel.add(l5Input);
+		myPanel.add(l7Input);
+		myPanel.add(l8Input);
+		myPanel.add(l10Input);
+		myPanel.add(b2);
+		myPanel.add(b3);
+		
+		//// Format validations
+		myPanel.add(formatDeptTime);
+		myPanel.add(formatArrTime);
+		myPanel.add(formatDate);
+		myPanel.add(formatPrice);
+		
 		System.out.println("Imhere hi2");
-		l2Input.setBackground(Employee_HomePage.myblue);
-		l3Input.setBackground(Employee_HomePage.myblue);
-		l4Input.setBackground(Employee_HomePage.myblue);
-		l5Input.setBackground(Employee_HomePage.myblue);
-		l10Input.setBackground(Employee_HomePage.myblue);
+		l2Input.setBackground(Admin_SignUp.mypurp);
+		l3Input.setBackground(Admin_SignUp.mypurp);
+		l4Input.setBackground(Admin_SignUp.mypurp);
+		l5Input.setBackground(Admin_SignUp.mypurp);
+		l10Input.setBackground(Admin_SignUp.mypurp);
 		System.out.println("Imhere hi3");
 		l2Input.setForeground(Color.WHITE);
 		l3Input.setForeground(Color.WHITE);
@@ -139,24 +202,34 @@ public class Admin_UpdateBooking {
 //		l4Input.setOpaque(true);
 //		l6Input.setOpaque(true);
 //		l9Input.setOpaque(true);
-//		
+		
 		System.out.println("Imhere hi4");
 		f9.setLayout(null);
-		f9.setSize(600, 700);
+		f9.setPreferredSize(new Dimension(600,620));
 		f9.setLocation((1366-600)/2, (768-600)/2);
+		//f9.setResizable(false);
+		f9.setContentPane(myPanel);
+		f9.pack();
 		f9.setVisible(true);
-		f9.setResizable(false);
+		
 		f9.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		//f9.getContentPane().setBackground(new Color(107, 0, 179));
+		
 		System.out.println("Imhere hi5");
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
 				if(listFlightID.getSelectedIndex()>0 && validateForm()) {
-					if(updateRecord()) {
+					if(updateRecord() == 1) {
 						JOptionPane.showMessageDialog(f9, "Flight Updated");
 						f9.setVisible(false);
 					}
-					else {
+					else if (updateRecord() == 2){
+						JOptionPane.showMessageDialog(f9, "All data is Same!",
+						"ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+					else if (updateRecord() == 3){
 						JOptionPane.showMessageDialog(f9, "Error",
 						"ERROR", JOptionPane.ERROR_MESSAGE);
 					}
@@ -298,7 +371,11 @@ public class Admin_UpdateBooking {
 			l3Input.setText(RouteID);
 			l4Input.setText(from);
 			l5Input.setText(to);
-			l10Input.setText("0");
+			l6Input.setText(deptTime);
+			l7Input.setText(arvTime);
+			l8Input.setText(Date);
+			l9Input.setText(Baseamount);
+			l10Input.setText(arrivalStatus);
 		}
 		protected void initializeDetails() 
 		{
@@ -308,11 +385,15 @@ public class Admin_UpdateBooking {
 			to = flightObj.getDest(flightID);
 			PlaneID = flightObj.getPlaneName(flightID);
 			RouteID = flightObj.getRouteID(flightID);
-			//deptTime = flightObj.getDeptTime(flightID);
-			//arvTime = flightObj.getArrivalTime(flightID);
-		//	Date = flightObj.getDate(flightID);
-		//	Baseamount = flightObj.getBaseAmount(flightID);
-		//	arrivalStatus = flightObj.getArrivalStatus(flightID);
+			deptTime = flightObj.getDeptTime(flightID);
+			arvTime = flightObj.getArrivalTime(flightID);
+			Date = flightObj.getDate(flightID);
+			Baseamount = flightObj.getBaseAmount(flightID);
+			arrivalStatus = flightObj.getArrivalStatus(flightID);
+			deptTimeCopy = deptTime;
+			arvTimeCopy = arvTime;
+			DateCopy = Date;
+			BaseamountCopy = Baseamount;
 			setInfoLabels();
 			
 		}
@@ -323,12 +404,88 @@ public class Admin_UpdateBooking {
 			l6Input.setText("");
 			l9Input.setText("");
 		}
-		protected boolean updateRecord() {
+		
+		protected boolean parseData() {
+			boolean successful = true;
+			// parse departure time
+			try {
+		        LocalTime.parse(deptTime);
+		        System.out.println("Valid time string: " + deptTime);
+		        formatDeptTime.setVisible(false);
+		        l6Input.setBorder(null);
+		    } catch (Exception e) {
+		    	formatDeptTime.setVisible(true);
+		        System.out.println("Invalid time string: " + deptTime);
+		        Border border = BorderFactory.createLineBorder(Color.RED,2);
+				l6Input.setBorder(border);
+				successful = false;
+		    }
+			// parse arrival time
+			try {
+		        LocalTime.parse(arvTime);
+		        System.out.println("Valid time string: " + arvTime);
+		        formatArrTime.setVisible(false);
+		        l7Input.setBorder(null);
+		    } catch (Exception e) {
+		    	formatArrTime.setVisible(true);
+		        System.out.println("Invalid time string: " + deptTime);
+		        Border border = BorderFactory.createLineBorder(Color.RED,2);
+				l7Input.setBorder(border);
+				successful = false;
+		    }
+			
+			// parse date
+			try {
+			    DateTimeFormatter formatter =
+			                      DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			    LocalDate date = LocalDate.parse(Date, formatter);
+			    System.out.printf("%s%n", date);
+			    formatDate.setVisible(false);
+				l8Input.setBorder(null);
+			}
+			catch (DateTimeParseException exc) {
+			    System.out.printf("%s is not parsable!%n", Date);
+			    formatDate.setVisible(true);
+				Border border = BorderFactory.createLineBorder(Color.RED,2);
+				l8Input.setBorder(border);
+				successful = false;
+			    
+			}
+			
+			// parse price
+			try {
+				Integer.parseInt(Baseamount);
+				formatPrice.setVisible(false);
+				l9Input.setBorder(null);
+			}
+			catch (Exception e) {
+				formatPrice.setVisible(true);
+				Border border = BorderFactory.createLineBorder(Color.RED,2);
+				l9Input.setBorder(border);
+				successful = false;
+			}
+			return successful;
+		}
+		
+		// Update the record after parsing and validating
+		protected int updateRecord() {
 			deptTime = l6Input.getText();
 			arvTime = l7Input.getText();
 			Date = l8Input.getText();
 			Baseamount = l9Input.getText();
-			return flightObj.UpdateFlight(flightID, deptTime, arvTime, Date, Baseamount,from, to);
+			
+			// parse unsuccessful, return false
+			if (!parseData())
+				return 0;
+			
+			// No change in data
+			if (deptTime.equals(deptTimeCopy) && arvTime.equals(arvTimeCopy) && Date.equals(DateCopy) && Baseamount.equals(BaseamountCopy))
+				return 2;
+			
+			// Try updating
+			else if (flightObj.UpdateFlight(flightID, deptTime, arvTime, Date, Baseamount,from, to))
+				return 1;
+			return 0;
 		}
 		
 		private boolean validateForm() {

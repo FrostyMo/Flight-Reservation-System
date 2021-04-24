@@ -3,6 +3,10 @@ package mainPackage.ApplicationLayer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -24,7 +28,7 @@ import mainPackage.BusinessLayer.Admin_Handler;
 
 class Admin_HomePage {
 
-	JFrame f4;
+	JFrame adminHomeFrame;
 	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l10, l11;
 	JPasswordField pf1, pf2, pf3;
@@ -83,10 +87,11 @@ class Admin_HomePage {
 		l4.setBounds(100, 150, 150, 150);
 		l5.setBounds(310, 150, 150, 150);
 		l6.setBounds(520, 150, 150, 150);
-		l7.setBounds(100, 150, 150, 150);
-		l8.setBounds(210, 150, 150, 150);
-		l10.setBounds(320, 150, 150, 150);
-		l11.setBounds(430, 150, 150, 150);
+		
+		l7.setBounds(80, 150, 150, 150);
+		l8.setBounds(230, 150, 150, 150);
+		l10.setBounds(380, 150, 150, 150);
+		l11.setBounds(530, 150, 150, 150);
 		String imageName1 = "createEmp.png";
 		String imageName2 = "deleteEmp.png";
 		String imageName3 = "viewEmp.png";
@@ -117,10 +122,10 @@ class Admin_HomePage {
 		b5.setBounds(70, 300, 150, 30);
 		b6.setBounds(280, 300, 150, 30);
 		b7.setBounds(490, 300, 150, 30);
-		b8.setBounds(70, 300, 110, 30);
-		b9.setBounds(190, 300, 110, 30);
-		b10.setBounds(310, 300, 110, 30);
-		b12.setBounds(430, 300, 110, 30);
+		b8.setBounds(70, 300, 120, 30);
+		b9.setBounds(220, 300, 120, 30);
+		b10.setBounds(370, 300, 120, 30);
+		b12.setBounds(520, 300, 120, 30);
 		p1.setBounds(0, 0, 700, 400);
 		p2.setBounds(0, 0, 700, 400);
 		p4.setBounds(0, 120, 700, 300);
@@ -799,5 +804,16 @@ class Admin_HomePage {
 			return false;
 		}
 	}
-
+	public static JPanel adminPanel() {
+		JPanel myPanel = new JPanel() {
+			   protected void paintComponent(Graphics g) {
+			      Paint p = new GradientPaint(0.0f, 0.0f, new Color(192, 173, 131, 200),
+			       getWidth(), getHeight(), new Color(142, 123, 100, 255), true);
+			      Graphics2D g2d = (Graphics2D)g;
+			      g2d.setPaint(p);
+			      g2d.fillRect(0, 0, getWidth(), getHeight());
+			   }
+		};
+		return myPanel;
+	}
 }

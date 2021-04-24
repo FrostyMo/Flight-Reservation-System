@@ -119,10 +119,10 @@ public class Admin_FlightSchedule {
 			
 			ResultSet rs = null;
 			try {
-				rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Time_Of_Depart FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+				rs = FRS_DataBase.ExecuteQueryRS("SELECT Time_Of_Depart FROM FRS_FLIGHT_SCHEDULE WHERE FLIGHT_ID = '"+Flight_ID+"' ");
 				rs.next();
-				System.out.println(rs.getString("R.Time_Of_Depart"));
-				return rs.getString("R.Time_Of_Depart");
+				System.out.println(rs.getString("Time_Of_Depart"));
+				return rs.getString("Time_Of_Depart");
 				
 			}
 			catch (Exception exc) {
@@ -138,10 +138,10 @@ public class Admin_FlightSchedule {
 		
 		ResultSet rs = null;
 		try {
-			rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Time_Of_Arrival FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+			rs = FRS_DataBase.ExecuteQueryRS("SELECT Time_Of_Arrival FROM FRS_FLIGHT_SCHEDULE WHERE FLIGHT_ID = '"+Flight_ID+"' ");
 			rs.next();
-			System.out.println(rs.getString("R.Time_Of_Arrival"));
-			return rs.getString("R.Time_Of_Arrival");
+			System.out.println(rs.getString("Time_Of_Arrival"));
+			return rs.getString("Time_Of_Arrival");
 			
 		}
 		catch (Exception exc) {
@@ -157,10 +157,10 @@ public class Admin_FlightSchedule {
 			
 			ResultSet rs = null;
 			try {
-				rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Flight_Date FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+				rs = FRS_DataBase.ExecuteQueryRS("SELECT Flight_Date FROM  FRS_FLIGHT_SCHEDULE WHERE FLIGHT_ID = '"+Flight_ID+"' ");
 				rs.next();
-				System.out.println(rs.getString("R.Flight_Date"));
-				return rs.getString("R.Flight_Date");
+				System.out.println(rs.getString("Flight_Date"));
+				return rs.getString("Flight_Date");
 				
 			}
 			catch (Exception exc) {
@@ -176,10 +176,10 @@ public class Admin_FlightSchedule {
 		
 		ResultSet rs = null;
 		try {
-			rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Base_Amount FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+			rs = FRS_DataBase.ExecuteQueryRS("SELECT Base_Amount FROM  FRS_FLIGHT_SCHEDULE WHERE FLIGHT_ID = '"+Flight_ID+"' ");
 			rs.next();
-			System.out.println(rs.getString("R.Base_Amount"));
-			return rs.getString("R.Base_Amount");
+			System.out.println(rs.getString("Base_Amount"));
+			return rs.getString("Base_Amount");
 			
 		}
 		catch (Exception exc) {
@@ -195,10 +195,10 @@ public class Admin_FlightSchedule {
 			
 			ResultSet rs = null;
 			try {
-				rs = FRS_DataBase.ExecuteQueryRS("SELECT FS.Status_Complete FROM  FRS_FLIGHT_SCHEDULE FS WHERE FLIGHT_ID = '"+Flight_ID+"' ");
+				rs = FRS_DataBase.ExecuteQueryRS("SELECT Status_Complete FROM FRS_FLIGHT_SCHEDULE WHERE FLIGHT_ID = '"+Flight_ID+"' ");
 				rs.next();
-				System.out.println(rs.getString("R.Status_Complete"));
-				return rs.getString("R.Status_Complete");
+				System.out.println(rs.getString("Status_Complete"));
+				return rs.getString("Status_Complete");
 				
 			}
 			catch (Exception exc) {

@@ -2,6 +2,7 @@ package mainPackage.ApplicationLayer;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -14,12 +15,14 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import mainPackage.BusinessLayer.Admin_Handler;
 
 public class Admin_DeleteFlight {
 
 	JFrame f9;
+	JPanel myPanel;
 	JLabel l1, l2, l3, l4, l5, l6, l7;
 	JComboBox<String> cb1;
 	JButton b1, b2;
@@ -32,10 +35,10 @@ public class Admin_DeleteFlight {
 	
 	public Admin_DeleteFlight() {
 		f9 = new JFrame("Delete Flight");
-		l1 = new JLabel("Select Flight ID : ");
-		l2 = new JLabel("Flight Name : ");
-		l3 = new JLabel("From : ");
-		l4 = new JLabel("To : ");
+		l1 = new JLabel("<html><span style='size: 14'><b>Select Flight ID : </b></span></html>");
+		l2 = new JLabel("<html><span style='size: 14'><b>Flight Name : </b></span></html>");
+		l3 = new JLabel("<html><span style='size: 14'><b>From : </b></span></html>");
+		l4 = new JLabel("<html><span style='size: 14'><b>To : </b></span></html>");
 		l5 = new JLabel();
 		l6 = new JLabel();
 		l7 = new JLabel();
@@ -43,6 +46,11 @@ public class Admin_DeleteFlight {
 		b1 = new JButton("OK");
 		b2 = new JButton("Cancel");
 		flightObj = new Admin_Handler();
+		
+		myPanel = Admin_HomePage.adminPanel();
+		myPanel.setLayout(null);
+		f9.getContentPane().setBackground(new Color(0,0,0,0));
+		
 		
 		l1.setBounds(30, 40, 150, 30);
 		l2.setBounds(30, 90, 150, 30);
@@ -57,20 +65,25 @@ public class Admin_DeleteFlight {
 		b2.setBounds(220, 250, 150, 30);
 		
 		getFlights();
-		f9.add(l1);
-		f9.add(l2);
-		f9.add(l3);
-		f9.add(l4);
-		f9.add(l5);
-		f9.add(l6);
-		f9.add(l7);
-		f9.add(cb1);
-		f9.add(b1);
-		f9.add(b2);
+		myPanel.add(l1);
+		myPanel.add(l2);
+		myPanel.add(l3);
+		myPanel.add(l4);
+		myPanel.add(l5);
+		myPanel.add(l6);
+		myPanel.add(l7);
+		myPanel.add(cb1);
+		myPanel.add(b1);
+		myPanel.add(b2);
 		
-		l5.setBackground(Employee_HomePage.myblue);
-		l6.setBackground(Employee_HomePage.myblue);
-		l7.setBackground(Employee_HomePage.myblue);
+		l1.setForeground(Admin_HomePage.mypurp);
+		l2.setForeground(Admin_HomePage.mypurp);
+		l3.setForeground(Admin_HomePage.mypurp);
+		l4.setForeground(Admin_HomePage.mypurp);
+		
+		l5.setBackground(Admin_HomePage.mypurp);
+		l6.setBackground(Admin_HomePage.mypurp);
+		l7.setBackground(Admin_HomePage.mypurp);
 		l5.setForeground(Color.WHITE);
 		l6.setForeground(Color.WHITE);
 		l7.setForeground(Color.WHITE);
@@ -79,8 +92,10 @@ public class Admin_DeleteFlight {
 		l7.setOpaque(true);
 		
 		f9.setLayout(null);
-		f9.setSize(450, 350);
+		f9.setPreferredSize(new Dimension(450, 350));
 		f9.setLocation((1366-450)/2, (768-350)/2);
+		f9.setContentPane(myPanel);
+		f9.pack();
 		f9.setVisible(true);
 		f9.setResizable(false);
 		f9.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

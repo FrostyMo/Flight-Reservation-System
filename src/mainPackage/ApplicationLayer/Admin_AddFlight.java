@@ -2,6 +2,7 @@ package mainPackage.ApplicationLayer;
 import mainPackage.BusinessLayer.*;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -19,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
@@ -30,7 +32,7 @@ public class Admin_AddFlight {
 	JTextField tf1, tf2, tf3, tf4, tf5;
 	JComboBox<String> list1, list2, list3, planeList, listDepart, listArrival;
 	JButton b1, b2;
-	
+	JPanel myPanel;
 	String ar[], ar1[], ar2;
 	//private String flightType;
 	private String flightID;
@@ -45,15 +47,18 @@ public class Admin_AddFlight {
 	
 	Admin_AddFlight() {
 		f8 = new JFrame("New Flight Form");
-		l1 = new JLabel("Flight Type : ");
-		l2 = new JLabel("Plane ID : ");
-		l3 = new JLabel("Base Price: ");
-		l4 = new JLabel("From  : ");
-		l5 = new JLabel("To : ");
-		l6 = new JLabel("Date (DD/MM/YYYY) : ");
-		l7 = new JLabel("Departure Time : ");
-		l8 = new JLabel("Arrival Time : ");
+		l1 = new JLabel("<html><span style='size: 14'><b>Flight Type : </b></span></html>");
+		l2 = new JLabel("<html><span style='size: 14'><b>Plane ID : </b></span></html>");
+		l3 = new JLabel("<html><span style='size: 14'><b>Base Price: </b></span></html>");
+		l4 = new JLabel("<html><span style='size: 14'><b>From  : </b></span></html>");
+		l5 = new JLabel("<html><span style='size: 14'><b>To : </b></span></html>");
+		l6 = new JLabel("<html><span style='size: 14'><b>Date (DD/MM/YYYY) : </b></span></html>");
+		l7 = new JLabel("<html><span style='size: 14'><b>Departure Time : </b></span></html>");
+		l8 = new JLabel("<html><span style='size: 14'><b>Arrival Time : </b></span></html>");
 		
+		myPanel = Admin_HomePage.adminPanel();
+		myPanel.setLayout(null);
+		f8.getContentPane().setBackground(new Color(0,0,0,0));
 		String ar1[]={"", "Domestic", "International"};
 		String times[] = {"", "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
 				"13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
@@ -76,13 +81,13 @@ public class Admin_AddFlight {
 		ePrice=new JLabel("Should be a number!");
 		ePrice.setBounds(200, 132,200 , 15);
 		ePrice.setFont(Admin_SignUp.ERRORFORMAT);
-		ePrice.setForeground(Color.RED);
+		//ePrice.setForeground(Color.RED);
 		ePrice.setVisible(false);
 		
 		eDate=new JLabel("Correct Format: (DD/MM/YYYY)");
 		eDate.setBounds(200, 252,200 , 15);
 		eDate.setFont(Admin_SignUp.ERRORFORMAT);
-		eDate.setForeground(Color.RED);
+		//eDate.setForeground(Color.RED);
 		eDate.setVisible(false);
 		
 		l1.setBounds(30, 30, 120, 25);
@@ -93,6 +98,16 @@ public class Admin_AddFlight {
 		l6.setBounds(30, 230, 150, 25);
 		l7.setBounds(30, 270, 120, 25);
 		l8.setBounds(30, 310, 120, 25);
+		
+		l1.setForeground(Admin_SignUp.mypurp);
+		l2.setForeground(Admin_SignUp.mypurp);	
+		l3.setForeground(Admin_SignUp.mypurp);
+		l4.setForeground(Admin_SignUp.mypurp);	
+		l5.setForeground(Admin_SignUp.mypurp);	
+		l6.setForeground(Admin_SignUp.mypurp);	
+		l7.setForeground(Admin_SignUp.mypurp);	
+		l8.setForeground(Admin_SignUp.mypurp);		
+		
 		
 		list1.setBounds(200, 30, 200, 25);
 		planeList.setBounds(200, 70, 200, 25);
@@ -115,34 +130,37 @@ public class Admin_AddFlight {
 		b1.setBounds(50, 370, 120, 30);
 		b2.setBounds(200, 370, 120, 30);
 		
-		f8.add(l1);
-		f8.add(l2);
-		f8.add(l3);
-		f8.add(l4);
-		f8.add(l5);
-		f8.add(l6);
-		f8.add(l7);
-		f8.add(l8);
-		f8.add(list1);
-		//f8.add(tf1);
-		f8.add(tf2);
-		f8.add(list2);
-		f8.add(list3);
-		f8.add(planeList);
-		f8.add(tf3);
-		//f8.add(tf4);
-		//f8.add(tf5);
-		f8.add(listDepart);
-		f8.add(listArrival);
-		f8.add(b1);
-		f8.add(b2);
+		myPanel.add(l1);
+		myPanel.add(l2);
+		myPanel.add(l3);
+		myPanel.add(l4);
+		myPanel.add(l5);
+		myPanel.add(l6);
+		myPanel.add(l7);
+		myPanel.add(l8);
+		myPanel.add(list1);
+		//myPanel.add(tf1);
+		myPanel.add(tf2);
+		myPanel.add(list2);
+		myPanel.add(list3);
+		myPanel.add(planeList);
+		myPanel.add(tf3);
+		//myPanel.add(tf4);
+		//myPanel.add(tf5);
+		myPanel.add(listDepart);
+		myPanel.add(listArrival);
+		myPanel.add(b1);
+		myPanel.add(b2);
 		
-		f8.add(ePrice);
+		myPanel.add(ePrice);
+		myPanel.add(eDate);
 		
 		f8.setLayout(null);
-		f8.setSize(500, 450);
+		f8.setPreferredSize(new Dimension(500,450));
 		f8.setLocation((1366-420)/2, (768-450)/2);
 		f8.setResizable(false);
+		f8.setContentPane(myPanel);
+		f8.pack();
 		f8.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		f8.setVisible(true);
 		
@@ -294,12 +312,8 @@ public class Admin_AddFlight {
 		return true;
 	}
 	
-	private boolean initializeDetails() {
-		//flightType = (String) list1.getSelectedItem();
-		basePrice = tf2.getText();
-		source = (String) list2.getSelectedItem();
-		destination = (String) list3.getSelectedItem();
-		
+	private boolean parseData() {
+		boolean successful = true;
 		try {
 			Integer.parseInt(basePrice);
 			ePrice.setVisible(false);
@@ -309,21 +323,8 @@ public class Admin_AddFlight {
 			ePrice.setVisible(true);
 			Border border = BorderFactory.createLineBorder(Color.RED,2);
 			tf2.setBorder(border);
-			return false;
+			successful = false;
 		}
-		if (source.equals(destination)) {
-			JOptionPane.showMessageDialog(f8, "SOURCE AND DESTINATION CAN NOT BE SAME",
-					"ERROR", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		else {
-			if (flights.Route_Exists(source, destination)=="") {
-				String duration;
-				duration = JOptionPane.showInputDialog("New Route being added, please add a duration: ");
-				flights.Create_Route(source, destination, duration);
-			}
-		}
-		dates = tf3.getText();
 		try {
 		    DateTimeFormatter formatter =
 		                      DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -337,8 +338,33 @@ public class Admin_AddFlight {
 		    eDate.setVisible(true);
 			Border border = BorderFactory.createLineBorder(Color.RED,2);
 			tf3.setBorder(border);
-		    return false;
+			successful = false;
 		}
+		if (source.equals(destination)) {
+			JOptionPane.showMessageDialog(f8, "SOURCE AND DESTINATION CAN NOT BE SAME",
+					"ERROR", JOptionPane.ERROR_MESSAGE);
+			successful = false;
+		}
+		else {
+			if (flights.Route_Exists(source, destination)=="") {
+				String duration;
+				duration = JOptionPane.showInputDialog("New Route being added, please add a duration: ");
+				flights.Create_Route(source, destination, duration);
+			}
+		}
+		return successful;
+	}
+	
+	private boolean initializeDetails() {
+		//flightType = (String) list1.getSelectedItem();
+		basePrice = tf2.getText();
+		source = (String) list2.getSelectedItem();
+		destination = (String) list3.getSelectedItem();
+		
+		
+		
+		dates = tf3.getText();
+		
 		//departure = tf4.getText();
 		//arrival = tf5.getText();
 		
@@ -346,7 +372,7 @@ public class Admin_AddFlight {
 		arrival = (String) listArrival.getSelectedItem();
 		
 		flightID = (String) planeList.getSelectedItem();
-		return true;
+		return parseData();
 	}
 
 	private boolean validateForm() {

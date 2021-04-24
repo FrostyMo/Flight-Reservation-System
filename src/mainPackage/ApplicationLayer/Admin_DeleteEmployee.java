@@ -2,6 +2,7 @@ package mainPackage.ApplicationLayer;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -14,12 +15,14 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import mainPackage.BusinessLayer.Admin_Handler;
 
 public class Admin_DeleteEmployee {
 
 	JFrame f6;
+	JPanel myPanel;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11;
 	JComboBox<String> cb1;
 	JButton b1, b2;
@@ -32,12 +35,12 @@ public class Admin_DeleteEmployee {
 	Admin_Handler aH;
 	public Admin_DeleteEmployee() {
 		f6 = new JFrame("Delete Employee");
-		l1 = new JLabel("Select Employee ID : ");
-		l2 = new JLabel("Employee Name : ");
-		l3 = new JLabel("Address : ");
-		l4 = new JLabel("Contact : ");
-		l5 = new JLabel("Age : ");
-		l10 = new JLabel("Join Date : ");
+		l1 = new JLabel("<html><span style='size: 14'><b>Select Employee ID : </b></span></html>");
+		l2 = new JLabel("<html><span style='size: 14'><b>Employee Name : </b></span></html>v");
+		l3 = new JLabel("<html><span style='size: 14'><b>Address : </b></span></html>");
+		l4 = new JLabel("<html><span style='size: 14'><b>Contact : </b></span></html>");
+		l5 = new JLabel("<html><span style='size: 14'><b>Age : </b></span></html>");
+		l10 = new JLabel("<html><span style='size: 14'><b>Join Date : </b></span></html>");
 		l6 = new JLabel();
 		l7 = new JLabel();
 		l8 = new JLabel();
@@ -49,6 +52,10 @@ public class Admin_DeleteEmployee {
 		cb1 = new JComboBox<String>();
 		b1 = new JButton("OK");
 		b2 = new JButton("Cancel");
+		
+		myPanel = Admin_HomePage.adminPanel();
+		myPanel.setLayout(null);
+		f6.getContentPane().setBackground(new Color(0,0,0,0));
 		
 		getEmployeeID();
 		l1.setBounds(30, 40, 150, 30);
@@ -66,18 +73,18 @@ public class Admin_DeleteEmployee {
 		b1.setBounds(40, 310, 150, 30);
 		b2.setBounds(220, 310, 150, 30);
 		
-		f6.add(l1);
-		f6.add(l2);
-		f6.add(l3);
-		f6.add(l4);
-		f6.add(l5);
-		f6.add(l6);
-		f6.add(l7);
-		f6.add(l8);
-		f6.add(l9);
-		f6.add(cb1);
-		f6.add(b1);
-		f6.add(b2);
+		myPanel.add(l1);
+		myPanel.add(l2);
+		myPanel.add(l3);
+		myPanel.add(l4);
+		myPanel.add(l5);
+		myPanel.add(l6);
+		myPanel.add(l7);
+		myPanel.add(l8);
+		myPanel.add(l9);
+		myPanel.add(cb1);
+		myPanel.add(b1);
+		myPanel.add(b2);
 		
 		l7.setBackground(Employee_HomePage.mygrey);
 		l8.setBackground(Employee_HomePage.mygrey);
@@ -93,8 +100,10 @@ public class Admin_DeleteEmployee {
 		l6.setOpaque(true);
 		
 		f6.setLayout(null);
-		f6.setSize(450, 420);
+		f6.setPreferredSize(new Dimension(450,420));
 		f6.setLocation((1366-450)/2, (768-420)/2);
+		f6.setContentPane(myPanel);
+		f6.pack();
 		f6.setVisible(true);
 		f6.setResizable(false);
 		f6.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
