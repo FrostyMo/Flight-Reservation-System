@@ -361,16 +361,4 @@ public class Admin_AddFlight {
 			return true;
 	}
 	
-	private boolean isDateValid(String dateString, String pattern)
-	{   
-	    try
-	    {
-	        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-	        if (sdf.format(sdf.parse(dateString)).equals(dateString))
-	            return true;
-	    }
-	    catch (Exception pe) {}
-
-	    return false;
-	}
 }

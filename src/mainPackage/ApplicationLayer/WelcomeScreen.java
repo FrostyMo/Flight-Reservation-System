@@ -29,7 +29,7 @@ import mainPackage.BusinessLayer.Login;
 
 class WelcomeScreenAndLogin {
 	
-	JFrame f1, f2, f3, f4, f5;
+	JFrame welcomeFrame, adminLoginFrame, empLoginFrame, custLoginFrame, f5;
 	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b10;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, signup_label, signup_entry1, signup_entry2;
 	JTextField tf1, tf2, tf3;
@@ -45,13 +45,13 @@ class WelcomeScreenAndLogin {
 	@SuppressWarnings("static-access")
 	WelcomeScreenAndLogin(){
 		
-		f1 = new JFrame("Welcome To FRS Login Page");
-		f2 = new JFrame("Login As Admin");
-		f3 = new JFrame("Login As Employee");
-		f4 = new JFrame("Login As Customer");
+		welcomeFrame = new JFrame("Welcome To FRS Login Page");
+		adminLoginFrame = new JFrame("Login As Admin");
+		empLoginFrame = new JFrame("Login As Employee");
+		custLoginFrame = new JFrame("Login As Customer");
 		//f5 = new JFrame("SignUp As Employee");
 		
-		f1.getContentPane().setBackground(Color.BLACK);
+		welcomeFrame.getContentPane().setBackground(Color.BLACK);
 		
 		//Connect.getConnection();		// Static Connection To database
 		
@@ -162,60 +162,60 @@ class WelcomeScreenAndLogin {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		f1.setContentPane(new ImagePanel(myImage));
-		f1.add(b1);
-		f1.add(b2);
-		f1.add(b3);
-		f2.add(l3);
-		f2.add(l4);
-		f2.add(tf1);
-		f2.add(pf1);
-		f2.add(b4);
-		f2.add(b5);
+		welcomeFrame.setContentPane(new ImagePanel(myImage));
+		welcomeFrame.add(b1);
+		welcomeFrame.add(b2);
+		welcomeFrame.add(b3);
+		adminLoginFrame.add(l3);
+		adminLoginFrame.add(l4);
+		adminLoginFrame.add(tf1);
+		adminLoginFrame.add(pf1);
+		adminLoginFrame.add(b4);
+		adminLoginFrame.add(b5);
 		
-		f3.add(l5);
-		f3.add(l6);
-		f3.add(tf2);
-		f3.add(pf2);
-		f3.add(b6);
-		f3.add(b7);
+		empLoginFrame.add(l5);
+		empLoginFrame.add(l6);
+		empLoginFrame.add(tf2);
+		empLoginFrame.add(pf2);
+		empLoginFrame.add(b6);
+		empLoginFrame.add(b7);
 		
-		f4.add(l7);
-		f4.add(l8);
-		f4.add(tf3);
-		f4.add(pf3);
-		f4.add(b8);
-		f4.add(b9);
-		//f1.add(b10);
-		f1.add(signup_label);
-		f1.add(signup_entry1);
-		f1.add(signup_entry2);
+		custLoginFrame.add(l7);
+		custLoginFrame.add(l8);
+		custLoginFrame.add(tf3);
+		custLoginFrame.add(pf3);
+		custLoginFrame.add(b8);
+		custLoginFrame.add(b9);
+		//welcomeFrame.add(b10);
+		welcomeFrame.add(signup_label);
+		welcomeFrame.add(signup_entry1);
+		welcomeFrame.add(signup_entry2);
 		
-		f1.setDefaultCloseOperation(f1.EXIT_ON_CLOSE);
-		f2.setDefaultCloseOperation(f1.DISPOSE_ON_CLOSE);
-		f3.setDefaultCloseOperation(f1.DISPOSE_ON_CLOSE);
-		f4.setDefaultCloseOperation(f1.DISPOSE_ON_CLOSE);
-		f1.setSize(720, 495);
-		f1.setLayout(null);
-		f1.setLocation((1600-770)/2, (900-495)/2);
-		f1.setVisible(true);
-		f1.setResizable(false);
+		welcomeFrame.setDefaultCloseOperation(welcomeFrame.EXIT_ON_CLOSE);
+		adminLoginFrame.setDefaultCloseOperation(welcomeFrame.DISPOSE_ON_CLOSE);
+		empLoginFrame.setDefaultCloseOperation(welcomeFrame.DISPOSE_ON_CLOSE);
+		custLoginFrame.setDefaultCloseOperation(welcomeFrame.DISPOSE_ON_CLOSE);
+		welcomeFrame.setSize(720, 495);
+		welcomeFrame.setLayout(null);
+		welcomeFrame.setLocation((1600-770)/2, (900-495)/2);
+		welcomeFrame.setVisible(true);
+		welcomeFrame.setResizable(false);
 		
-		f2.setSize(450, 320);
-		f2.setLocation((1366-450)/2, (768-320)/2);
-		f2.setLayout(null);
-		f2.setResizable(false);
-		f2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		f3.setSize(450, 320);
-		f3.setLocation((1366-450)/2, (768-320)/2);
-		f3.setLayout(null);
-		f3.setResizable(false);
-		f3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		f4.setSize(450, 320);
-		f4.setLocation((1366-450)/2, (768-320)/2);
-		f4.setLayout(null);
-		f4.setResizable(false);
-		f4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		adminLoginFrame.setSize(450, 320);
+		adminLoginFrame.setLocation((1366-450)/2, (768-320)/2);
+		adminLoginFrame.setLayout(null);
+		adminLoginFrame.setResizable(false);
+		adminLoginFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		empLoginFrame.setSize(450, 320);
+		empLoginFrame.setLocation((1366-450)/2, (768-320)/2);
+		empLoginFrame.setLayout(null);
+		empLoginFrame.setResizable(false);
+		empLoginFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		custLoginFrame.setSize(450, 320);
+		custLoginFrame.setLocation((1366-450)/2, (768-320)/2);
+		custLoginFrame.setLayout(null);
+		custLoginFrame.setResizable(false);
+		custLoginFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//b1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 20));
 		
 		
@@ -380,7 +380,7 @@ class WelcomeScreenAndLogin {
 				buttonSound();
 				tf1.setText("");
 				pf1.setText("");
-				f2.setVisible(true);
+				adminLoginFrame.setVisible(true);
 			}
 		});
 		
@@ -390,7 +390,7 @@ class WelcomeScreenAndLogin {
 				buttonSound();
 				tf2.setText("");
 				pf2.setText("");
-				f3.setVisible(true);
+				empLoginFrame.setVisible(true);
 			}
 		});
 		
@@ -400,23 +400,23 @@ class WelcomeScreenAndLogin {
 				buttonSound();
 				tf3.setText("");
 				pf3.setText("");
-				f4.setVisible(true);
+				custLoginFrame.setVisible(true);
 				//Privileges for user 
 			}
 		});
 		
-		// Admin login page's submit button
+		// Administrator login page's submit button
 		
 		b4.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent ae) {
 				buttonSound();
 				if(login.loginAdmin(tf1.getText(), pf1.getText())) {
-					f2.setVisible(false);
-					f1.setVisible(false);
+					adminLoginFrame.setVisible(false);
+					welcomeFrame.setVisible(false);
 					new Admin_HomePage(tf1.getText());
 				}else {
-					JOptionPane.showMessageDialog(f2,
+					JOptionPane.showMessageDialog(adminLoginFrame,
 					"Invalid Employee ID or Password. Please try again",
 					"Login Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -428,8 +428,8 @@ class WelcomeScreenAndLogin {
 			
 			public void actionPerformed(ActionEvent ae) {
 				buttonSound();
-				f2.setVisible(false);
-				f1.setVisible(true);
+				adminLoginFrame.setVisible(false);
+				welcomeFrame.setVisible(true);
 			}
 		});
 		
@@ -439,11 +439,11 @@ class WelcomeScreenAndLogin {
 			public void actionPerformed(ActionEvent ae) {
 				buttonSound();
 				if(login.loginEmployee(tf2.getText(), pf2.getText())) {
-					f3.setVisible(false);
-					f1.setVisible(false);
+					empLoginFrame.setVisible(false);
+					welcomeFrame.setVisible(false);
 					new Employee_HomePage(tf2.getText());
 				}else {
-					JOptionPane.showMessageDialog(f3,
+					JOptionPane.showMessageDialog(empLoginFrame,
 					"Invalid Employee ID or Password. Please try again",
 					"Login Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -455,8 +455,8 @@ class WelcomeScreenAndLogin {
 			
 			public void actionPerformed(ActionEvent ae) {
 				buttonSound();
-				f3.setVisible(false);
-				f1.setVisible(true);
+				empLoginFrame.setVisible(false);
+				welcomeFrame.setVisible(true);
 			}
 		});
 		
@@ -468,11 +468,11 @@ class WelcomeScreenAndLogin {
 				
 				if(login.loginUser(tf3.getText(), pf3.getText())) {
 					buttonSound();
-					f4.setVisible(false);
-					f1.setVisible(false);
+					custLoginFrame.setVisible(false);
+					welcomeFrame.setVisible(false);
 					new Customer_HomePage(tf3.getText());
 				}else {
-					JOptionPane.showMessageDialog(f3,
+					JOptionPane.showMessageDialog(empLoginFrame,
 					"Invalid User ID or Password. Please try again",
 					"Login Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -483,8 +483,8 @@ class WelcomeScreenAndLogin {
 		b9.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae) {
 				buttonSound();
-				f4.setVisible(false);
-				f1.setVisible(true);
+				custLoginFrame.setVisible(false);
+				welcomeFrame.setVisible(true);
 			}
 		});
 		
@@ -495,7 +495,7 @@ class WelcomeScreenAndLogin {
 //			public void actionPerformed(ActionEvent arg0) {
 //				buttonSound();
 //				new Admin_SignUp();
-//				//f2.setVisible(true);
+//				//adminLoginFrame.setVisible(true);
 //			}
 //		});
 		

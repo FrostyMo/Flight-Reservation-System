@@ -26,7 +26,7 @@ import mainPackage.BusinessLayer.Admin_Handler;
 
 class Admin_HomePage {
 
-	JFrame f4;
+	JFrame adminHomeFrame;
 	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l10;
 	JPasswordField pf1, pf2, pf3;
@@ -44,10 +44,10 @@ class Admin_HomePage {
 	
 	Admin_HomePage(String adminName){
 		this.adminName = adminName;
-		f4 = new JFrame("Admin Homepage");
-		f4.setLayout(null);
-		f4.setSize(700, 495);
-		f4.setLocation((1366-700)/2, (768-495)/2);
+		adminHomeFrame = new JFrame("Admin Homepage");
+		adminHomeFrame.setLayout(null);
+		adminHomeFrame.setSize(700, 495);
+		adminHomeFrame.setLocation((1366-700)/2, (768-495)/2);
 		
 		aH = new Admin_Handler();
 		
@@ -141,7 +141,7 @@ class Admin_HomePage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		f4.setContentPane(new ImagePanel(myImage));
+		adminHomeFrame.setContentPane(new ImagePanel(myImage));
 		
 		p1.setVisible(false);
 		p2.setVisible(false);
@@ -171,16 +171,16 @@ class Admin_HomePage {
 		p4.add(pf3);
 		p4.add(b11);
 		
-		f4.add(b1);
-		f4.add(b2);
-		f4.add(b3);
-		f4.add(b4);
-		f4.add(p1);
-		f4.add(p2);
-		f4.add(p4);
-		f4.setResizable(false);
-		f4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f4.setVisible(true);
+		adminHomeFrame.add(b1);
+		adminHomeFrame.add(b2);
+		adminHomeFrame.add(b3);
+		adminHomeFrame.add(b4);
+		adminHomeFrame.add(p1);
+		adminHomeFrame.add(p2);
+		adminHomeFrame.add(p4);
+		adminHomeFrame.setResizable(false);
+		adminHomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		adminHomeFrame.setVisible(true);
 		//Employee Button
 		b1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae) {
@@ -211,7 +211,7 @@ class Admin_HomePage {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
-				f4.setVisible(false);
+				adminHomeFrame.setVisible(false);
 				new WelcomeScreenAndLogin();
 			}
 		});
@@ -219,7 +219,7 @@ class Admin_HomePage {
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
-				//f4.setVisible(false);
+				//adminHomeFrame.setVisible(false);
 				new Admin_CreateEmployee();
 			}
 		});
@@ -271,7 +271,7 @@ class Admin_HomePage {
 						}
 					}
 					else
-						JOptionPane.showMessageDialog(f4, "New Passwords do not match",
+						JOptionPane.showMessageDialog(adminHomeFrame, "New Passwords do not match",
 								"Password Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
