@@ -153,7 +153,7 @@ public class Admin_UpdateBooking {
 				WelcomeScreenAndLogin.buttonSound();
 				if(listFlightID.getSelectedIndex()>0 && validateForm()) {
 					if(updateRecord()) {
-						JOptionPane.showMessageDialog(f9, "Booking Updated");
+						JOptionPane.showMessageDialog(f9, "Flight Updated");
 						f9.setVisible(false);
 					}
 					else {

@@ -27,7 +27,7 @@ public class Admin_EditFlight {
 		//String routeID= helper.Route_Exists(Src, Dest);
 		
 		String q = "UPDATE FRS_FLIGHT_SCHEDULE SET Flight_Date = '"+Date+"', Time_Of_Depart = '"+deptTime+"', Time_Of_Arrival = '"+arriveTime+"', Base_Amount = '"
-	+Baseamount+"', WHERE PASSENGER_ID = '"+flightID+"'";
+	+Baseamount+"' WHERE FLIGHT_ID = '"+flightID+"'";
 		
 		return FRS_DB.ExecuteUpdate(q);
 	}
