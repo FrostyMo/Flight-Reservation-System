@@ -97,8 +97,8 @@ public class Admin_Handler {
 	public boolean AddEmployee(String empID, String name, String pass, long cnic, int age, String gender, String address, String joindate, String nation, long phone, long passport) {
 		return eH.AddEmployee(empID, name, pass, cnic, age, gender, address, joindate, nation, phone, passport);
 	}
-	public boolean UpdateFlight(String flightID, String deptTime, String arriveTime, String Date, String Baseamount) {
-		return editFlight.UpdateFlight(flightID, deptTime, arriveTime, Date, Baseamount);
+	public boolean UpdateFlight(String flightID, String deptTime, String arriveTime, String Date, String Baseamount, String Src, String Dest) {
+		return editFlight.UpdateFlight(flightID, deptTime, arriveTime, Date, Baseamount, Src, Dest);
 	}
 	
 	public String[] getAllEmployeeIDs() {

@@ -19,11 +19,12 @@ import mainPackage.BusinessLayer.Admin_Handler;
 import mainPackage.BusinessLayer.Customer_Handler;
 
 public class Admin_UpdateBooking {
+	private static final String NullPointerException = null;
 	JFrame f9;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11;
 	
 	JTextField l2Input, l3Input, l4Input, l5Input, l6Input, l7Input, l8Input, l10Input, l9Input;
-	JComboBox<String> listFlightID, listPassengerID, listMeal, listSeat, listClass, listCheckin;
+	JComboBox<String> listFlightID, listMeal, listSeat, listClass, listCheckin;
 	JButton b1, b2, b3;
 	private String flightID;
 	private String PlaneID;
@@ -69,7 +70,7 @@ public class Admin_UpdateBooking {
 		b3 = new JButton("Cancel");
 		flightObj = new Admin_Handler();
 		
-		l1.setBounds(30, 40, 150, 30);		// Flight ID 	** WILL BE A LIST **
+		l1.setBounds(30, 40, 150, 30);		// Flight ID 	
 		l2.setBounds(30, 90, 150, 30);		// PLANE ID
 		l3.setBounds(30, 140, 150, 30);		// ROUTE ID
 		l4.setBounds(30, 190, 150, 30);		// SOURCE
@@ -93,7 +94,7 @@ public class Admin_UpdateBooking {
 		l10Input.setBounds(220, 490, 200, 30);
 		//listCheckin.setBounds(220, 540, 200, 30);
 		
-		
+		System.out.println("Imhere hi");
 		//b1.setBounds(40, 640, 150, 30);
 		b2.setBounds(240, 640, 150, 30);
 		b3.setBounds(440, 640, 150, 30);
@@ -109,7 +110,6 @@ public class Admin_UpdateBooking {
 		f9.add(l8);
 		f9.add(l9);
 		f9.add(l10);
-		f9.add(l11);
 		f9.add(l2Input);
 		f9.add(l3Input);
 		f9.add(l4Input);
@@ -122,13 +122,13 @@ public class Admin_UpdateBooking {
 		f9.add(l10Input);
 		f9.add(b2);
 		f9.add(b3);
-		
+		System.out.println("Imhere hi2");
 		l2Input.setBackground(Employee_HomePage.myblue);
 		l3Input.setBackground(Employee_HomePage.myblue);
 		l4Input.setBackground(Employee_HomePage.myblue);
 		l5Input.setBackground(Employee_HomePage.myblue);
 		l10Input.setBackground(Employee_HomePage.myblue);
-		
+		System.out.println("Imhere hi3");
 		l2Input.setForeground(Color.WHITE);
 		l3Input.setForeground(Color.WHITE);
 		l4Input.setForeground(Color.WHITE);
@@ -140,13 +140,14 @@ public class Admin_UpdateBooking {
 //		l6Input.setOpaque(true);
 //		l9Input.setOpaque(true);
 //		
+		System.out.println("Imhere hi4");
 		f9.setLayout(null);
 		f9.setSize(600, 700);
 		f9.setLocation((1366-600)/2, (768-600)/2);
 		f9.setVisible(true);
 		f9.setResizable(false);
 		f9.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+		System.out.println("Imhere hi5");
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
@@ -166,7 +167,7 @@ public class Admin_UpdateBooking {
 				}
 			}
 		});
-		
+		System.out.println("Imhere hi6");
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
@@ -174,7 +175,7 @@ public class Admin_UpdateBooking {
 				//new AdminLogin();
 			}
 		});
-		
+		System.out.println("Imhere hi7");
 		listFlightID.addItemListener(new ItemListener() {
 
 			@Override
@@ -192,7 +193,7 @@ public class Admin_UpdateBooking {
 			
 		});
 		
-		
+		System.out.println("Imhere hi8");
 		
 		b2.addMouseListener(new MouseListener() {
 			@Override
@@ -283,7 +284,7 @@ public class Admin_UpdateBooking {
 			listFlightID.addItem("");
 			String[] flighIDs = flightObj.getAllFlightIDs();
 			for (int i=0; i<flighIDs.length; i++) {
-				if (flighIDs[i]!="") {
+				if (flighIDs[i]!="" && flighIDs[i]!=NullPointerException) {
 					System.out.println(flighIDs[i]);
 					listFlightID.addItem(flighIDs[i]);
 				}
@@ -297,7 +298,7 @@ public class Admin_UpdateBooking {
 			l3Input.setText(RouteID);
 			l4Input.setText(from);
 			l5Input.setText(to);
-			l10Input.setText(arrivalStatus);
+			l10Input.setText("0");
 		}
 		protected void initializeDetails() 
 		{
@@ -307,11 +308,11 @@ public class Admin_UpdateBooking {
 			to = flightObj.getDest(flightID);
 			PlaneID = flightObj.getPlaneName(flightID);
 			RouteID = flightObj.getRouteID(flightID);
-			deptTime = flightObj.getDeptTime(flightID);
-			arvTime = flightObj.getArrivalTime(flightID);
-			Date = flightObj.getDate(flightID);
-			Baseamount = flightObj.getBaseAmount(flightID);
-			arrivalStatus = flightObj.getArrivalStatus(flightID);
+			//deptTime = flightObj.getDeptTime(flightID);
+			//arvTime = flightObj.getArrivalTime(flightID);
+		//	Date = flightObj.getDate(flightID);
+		//	Baseamount = flightObj.getBaseAmount(flightID);
+		//	arrivalStatus = flightObj.getArrivalStatus(flightID);
 			setInfoLabels();
 			
 		}
@@ -321,18 +322,13 @@ public class Admin_UpdateBooking {
 			l2Input.setText("");
 			l6Input.setText("");
 			l9Input.setText("");
-			listPassengerID.setSelectedItem("");
-			listMeal.setSelectedItem("");
-			listSeat.setSelectedItem("");
-			listClass.setSelectedItem("");
-			listCheckin.setSelectedItem("");
 		}
 		protected boolean updateRecord() {
 			deptTime = l6Input.getText();
 			arvTime = l7Input.getText();
 			Date = l8Input.getText();
 			Baseamount = l9Input.getText();
-			return flightObj.UpdateFlight(flightID, deptTime, arvTime, Date, Baseamount);
+			return flightObj.UpdateFlight(flightID, deptTime, arvTime, Date, Baseamount,from, to);
 		}
 		
 		private boolean validateForm() {
