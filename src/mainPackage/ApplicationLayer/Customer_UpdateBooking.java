@@ -2,6 +2,7 @@ package mainPackage.ApplicationLayer;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -9,19 +10,22 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import mainPackage.BusinessLayer.Customer_Handler;
 
 public class Customer_UpdateBooking {
 	JFrame f9;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11;
-	
+	JPanel myPanel;
 	JTextField l2Input, l3Input, l4Input, l6Input, l9Input;
 	JComboBox<String> listBookingID, listPassengerID, listMeal, listSeat, listClass, listCheckin;
 	JButton b1, b2, b3;
@@ -58,6 +62,10 @@ public class Customer_UpdateBooking {
 		String ar3[]= {"", "Economy", "Business"};
 		String ar4[] = {"", "Yes", "No"};
 		
+		myPanel = Customer_HomePage.customerPanel();
+		myPanel.setLayout(null);
+		f9.getContentPane().setBackground(new Color(0,0,0,0));
+		
 		l2Input = new JTextField();
 		l3Input = new JTextField();
 		l4Input = new JTextField();
@@ -76,11 +84,11 @@ public class Customer_UpdateBooking {
 		
 		
 		
-		l1.setBounds(30, 40, 150, 30);		// BOOKING ID 	** WILL BE A LIST **
+		l1.setBounds(30, 40, 200, 30);		// BOOKING ID 	** WILL BE A LIST **
 		l2.setBounds(30, 90, 150, 30);		// FLIGHT ID
 		l3.setBounds(30, 140, 150, 30);		// SOURCE
 		l4.setBounds(30, 190, 150, 30);		// DESTINATION
-		l5.setBounds(30, 240, 150, 30);		// PASSENGER ID ** WILL BE A LIST **
+		l5.setBounds(30, 240, 200, 30);		// PASSENGER ID ** WILL BE A LIST **
 		l6.setBounds(30, 290, 150, 30);		// NAME
 		l7.setBounds(30, 340, 150, 30);		// MEAL OPT		** WILL BE A LIST **
 		l8.setBounds(30, 390, 150, 30);		// SEAT OPT		** WILL BE A LIST **
@@ -88,55 +96,117 @@ public class Customer_UpdateBooking {
 		l10.setBounds(30, 490, 150, 30);	// CLASS		** WILL BE A LIST **
 		l11.setBounds(30, 540, 150, 30);	// CHECK IN		** WILL BE A LIST **
 		
-		listBookingID.setBounds(220, 40, 200, 30);
-		l2Input.setBounds(220, 90, 200, 30);
-		l3Input.setBounds(220, 140, 200, 30);
-		l4Input.setBounds(220, 190, 200, 30);
-		listPassengerID.setBounds(220, 240, 200, 30);
-		l6Input.setBounds(220, 290, 200, 30);
-		listMeal.setBounds(220, 340, 200, 30);
-		listSeat.setBounds(220, 390, 200, 30);
-		l9Input.setBounds(220, 440, 200, 30);
-		listClass.setBounds(220, 490, 200, 30);
-		listCheckin.setBounds(220, 540, 200, 30);
+		l1.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l2.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l3.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l4.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l5.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l6.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l7.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l8.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l9.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l10.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l11.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		
+		l1.setForeground(Color.WHITE);
+		l2.setForeground(Color.WHITE);
+		l3.setForeground(Color.WHITE);
+		l4.setForeground(Color.WHITE);
+		l5.setForeground(Color.WHITE);
+		l6.setForeground(Color.WHITE);
+		l7.setForeground(Color.WHITE);
+		l8.setForeground(Color.WHITE);
+		l9.setForeground(Color.WHITE);
+		l10.setForeground(Color.WHITE);
+		l11.setForeground(Color.WHITE);
 		
 		
-		b1.setBounds(40, 640, 150, 30);
-		b2.setBounds(240, 640, 150, 30);
-		b3.setBounds(440, 640, 150, 30);
+		listBookingID.setBounds(270, 40, 220, 30);
+		l2Input.setBounds(270, 90, 200, 30);
+		l3Input.setBounds(270, 140, 200, 30);
+		l4Input.setBounds(270, 190, 200, 30);
+		listPassengerID.setBounds(270, 240, 220, 30);
+		l6Input.setBounds(270, 290, 200, 30);
+		listMeal.setBounds(270, 340, 220, 30);
+		listSeat.setBounds(270, 390, 220, 30);
+		l9Input.setBounds(270, 440, 200, 30);
+		listClass.setBounds(270, 490, 220, 30);
+		listCheckin.setBounds(270, 540, 220, 30);
+		
+		l2Input.setHorizontalAlignment(SwingConstants.CENTER);
+		l2Input.setAlignmentY(SwingConstants.CENTER);
+		l3Input.setHorizontalAlignment(SwingConstants.CENTER);
+		l3Input.setAlignmentY(SwingConstants.CENTER);
+		l4Input.setHorizontalAlignment(SwingConstants.CENTER);
+		l4Input.setAlignmentY(SwingConstants.CENTER);
+		l6Input.setHorizontalAlignment(SwingConstants.CENTER);
+		l6Input.setAlignmentY(SwingConstants.CENTER);
+		l9Input.setHorizontalAlignment(SwingConstants.CENTER);
+		l9Input.setAlignmentY(SwingConstants.CENTER);
+		DefaultListCellRenderer listRenderer = new DefaultListCellRenderer();
+	    listRenderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
+	    listBookingID.setRenderer(listRenderer);
+	    listPassengerID.setRenderer(listRenderer);
+	    listMeal.setRenderer(listRenderer);
+	    listSeat.setRenderer(listRenderer);
+	    listClass.setRenderer(listRenderer);
+	    listCheckin.setRenderer(listRenderer);
+	    
+		
+		b1.setBounds(40, 600, 150, 30);
+		b2.setBounds(240, 600, 150, 30);
+		b3.setBounds(440, 600, 150, 30);
+		
+		b1.setBackground(Color.WHITE);
+		b2.setBackground(Color.WHITE);
+		b3.setBackground(Color.WHITE);
+		
+		b1.setOpaque(true);
+		b2.setOpaque(true);
+		b2.setOpaque(true);
+		
+		b1.setFocusable(false);
+		b2.setFocusable(false);
+		b2.setFocusable(false);
 		
 		getBookings();
-		f9.add(l1);
-		f9.add(l2);
-		f9.add(l3);
-		f9.add(l4);
-		f9.add(l5);
-		f9.add(l6);
-		f9.add(l7);
-		f9.add(l8);
-		f9.add(l9);
-		f9.add(l10);
-		f9.add(l11);
-		f9.add(l2Input);
-		f9.add(l3Input);
-		f9.add(l4Input);
-		f9.add(l6Input);
-		f9.add(l9Input);
-		f9.add(listBookingID);
-		f9.add(listPassengerID);
-		f9.add(listMeal);
-		f9.add(listSeat);
-		f9.add(listClass);
-		f9.add(listCheckin);
-		f9.add(b1);
-		f9.add(b2);
-		f9.add(b3);
+		myPanel.add(l1);
+		myPanel.add(l2);
+		myPanel.add(l3);
+		myPanel.add(l4);
+		myPanel.add(l5);
+		myPanel.add(l6);
+		myPanel.add(l7);
+		myPanel.add(l8);
+		myPanel.add(l9);
+		myPanel.add(l10);
+		myPanel.add(l11);
+		myPanel.add(l2Input);
+		myPanel.add(l3Input);
+		myPanel.add(l4Input);
+		myPanel.add(l6Input);
+		myPanel.add(l9Input);
+		myPanel.add(listBookingID);
+		myPanel.add(listPassengerID);
+		myPanel.add(listMeal);
+		myPanel.add(listSeat);
+		myPanel.add(listClass);
+		myPanel.add(listCheckin);
+		myPanel.add(b1);
+		myPanel.add(b2);
+		myPanel.add(b3);
 		
 		l2Input.setBackground(Employee_HomePage.myblue);
 		l3Input.setBackground(Employee_HomePage.myblue);
 		l4Input.setBackground(Employee_HomePage.myblue);
 		l6Input.setBackground(Employee_HomePage.myblue);
 		l9Input.setBackground(Employee_HomePage.myblue);
+		
+		l2Input.setEditable(false);
+		l3Input.setEditable(false);
+		l4Input.setEditable(false);
+		l6Input.setEditable(false);
+		l9Input.setEditable(false);
 		
 		l2Input.setForeground(Color.WHITE);
 		l3Input.setForeground(Color.WHITE);
@@ -150,10 +220,12 @@ public class Customer_UpdateBooking {
 //		l9Input.setOpaque(true);
 //		
 		f9.setLayout(null);
-		f9.setSize(600, 700);
+		f9.setPreferredSize(new Dimension(600,670));
+//		f9.setSize(600, 670);
 		f9.setLocation((1366-600)/2, (768-600)/2);
+		f9.setContentPane(myPanel);
+		f9.pack();
 		f9.setVisible(true);
-		f9.setResizable(false);
 		f9.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		b1.addActionListener(new ActionListener() {
@@ -254,7 +326,7 @@ public class Customer_UpdateBooking {
 				b1.setBackground(Color.WHITE);
 				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
-				b1.setOpaque(false);
+//				b1.setOpaque(false);
 			}
 
 			@Override
@@ -294,7 +366,7 @@ public class Customer_UpdateBooking {
 				b2.setBackground(Color.WHITE);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+//				b2.setOpaque(false);
 			}
 
 			@Override
@@ -334,7 +406,7 @@ public class Customer_UpdateBooking {
 				b3.setBackground(Color.WHITE);
 				b3.setForeground(Color.BLACK);
 				b3.setCursor(null);
-				b3.setOpaque(false);
+//				b3.setOpaque(false);
 			}
 
 			@Override

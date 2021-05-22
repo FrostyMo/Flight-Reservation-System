@@ -61,8 +61,18 @@ public class Admin_DeleteFlight {
 		l6.setBounds(220, 140, 200, 30);
 		l7.setBounds(220, 190, 200, 30);
 		
-		b1.setBounds(40, 250, 150, 30);
-		b2.setBounds(220, 250, 150, 30);
+		b1.setBounds(60, 250, 150, 30);
+		b2.setBounds(260, 250, 150, 30);
+		
+		b1.setBackground(Color.WHITE);
+		b2.setBackground(Color.WHITE);
+		
+		b1.setFocusable(false);
+		b2.setFocusable(false);
+		
+		b1.setOpaque(true);
+		b2.setOpaque(true);
+		
 		
 		getFlights();
 		myPanel.add(l1);
@@ -164,7 +174,7 @@ public class Admin_DeleteFlight {
 				b1.setBackground(Color.WHITE);
 				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
-				b1.setOpaque(false);
+//				b1.setOpaque(false);
 			}
 
 			@Override
@@ -204,7 +214,7 @@ public class Admin_DeleteFlight {
 				b2.setBackground(Color.WHITE);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+//				b2.setOpaque(false);
 			}
 
 			@Override

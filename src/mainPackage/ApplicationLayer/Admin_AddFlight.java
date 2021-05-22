@@ -127,8 +127,17 @@ public class Admin_AddFlight {
 		listDepart.setBackground(Color.WHITE);
 		listArrival.setBackground(Color.WHITE);
 		
-		b1.setBounds(50, 370, 120, 30);
-		b2.setBounds(200, 370, 120, 30);
+		b1.setBounds(120, 370, 120, 30);
+		b2.setBounds(260, 370, 120, 30);
+		
+		b1.setBackground(Color.WHITE);
+		b2.setBackground(Color.WHITE);
+		
+		b1.setFocusable(false);
+		b2.setFocusable(false);
+		
+		b1.setOpaque(true);
+		b2.setOpaque(true);
 		
 		myPanel.add(l1);
 		myPanel.add(l2);
@@ -231,7 +240,7 @@ public class Admin_AddFlight {
 				b1.setBackground(Color.WHITE);
 				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
-				b1.setOpaque(false);
+//				b1.setOpaque(false);
 			}
 
 			@Override
@@ -271,7 +280,7 @@ public class Admin_AddFlight {
 				b2.setBackground(Color.WHITE);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+//				b2.setOpaque(false);
 			}
 
 			@Override

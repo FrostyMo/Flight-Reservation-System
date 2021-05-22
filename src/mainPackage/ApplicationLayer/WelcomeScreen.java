@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +25,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import mainPackage.BusinessLayer.Login;
 
@@ -34,8 +37,12 @@ class WelcomeScreenAndLogin {
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, signup_label, signup_entry1, signup_entry2;
 	JTextField tf1, tf2, tf3;
 	JPasswordField pf1, pf2, pf3;
+	
+	final static Border BUTTONBORDER = BorderFactory.createLineBorder(new Color(255,102,102), 1);
+	final static Border BORDERBLACK = BorderFactory.createLineBorder(Color.BLACK, 2);
 	final static Font allButton = new Font("Bookman Old Style", Font.PLAIN, 16);
 	final static Font allLabel = new Font("Berlin Sans FB", Font.PLAIN, 18);
+	final static Font WHITELABEL = new Font("Berlin Sans FB", Font.PLAIN, 18);
 	static BufferedImage myImage = null;
 	Login login = new Login();
 	final static Color myblue = new Color(6, 13, 83);
@@ -136,6 +143,45 @@ class WelcomeScreenAndLogin {
 		b8.setBounds(70, 200, 130, 40);
 		b9.setBounds(250, 200, 130, 40);
 		b10.setBounds(500, 200, 150, 30);	// Admin Sign up
+		
+		b1.setOpaque(true);
+		b2.setOpaque(true);
+		b3.setOpaque(true);
+		b4.setOpaque(true);
+		b5.setOpaque(true);
+		b6.setOpaque(true);
+		b7.setOpaque(true);
+		b8.setOpaque(true);
+		b9.setOpaque(true);
+		b10.setOpaque(true);
+		
+		b1.setBorder(BUTTONBORDER);
+		b2.setBorder(BUTTONBORDER);
+		b3.setBorder(BUTTONBORDER);
+		b4.setBorder(BUTTONBORDER);
+		b5.setBorder(BUTTONBORDER);
+		b6.setBorder(BUTTONBORDER);
+		b7.setBorder(BUTTONBORDER);
+		b8.setBorder(BUTTONBORDER);
+		b9.setBorder(BUTTONBORDER);
+		b10.setBorder(BUTTONBORDER);
+		
+		
+		b1.setBackground(Color.white);
+		b2.setBackground(Color.white);
+		b3.setBackground(Color.white);
+		b4.setBackground(Color.white);
+		b5.setBackground(Color.white);
+		b6.setBackground(Color.white);
+		b7.setBackground(Color.white);
+		b8.setBackground(Color.white);
+		b9.setBackground(Color.white);
+		
+		b1.setFocusable(false);
+		b2.setFocusable(false);
+		b3.setFocusable(false);
+		
+		
 		l3.setBounds(40, 50, 140, 40);
 		l4.setBounds(40, 120, 140, 40);
 		l5.setBounds(40, 50, 140, 40);
@@ -164,6 +210,14 @@ class WelcomeScreenAndLogin {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try{
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		}
+		catch(Exception e){
+			e.printStackTrace(); 
+		}
+		
 		welcomeFrame.setContentPane(new ImagePanel(myImage));
 		welcomeFrame.add(b1);
 		welcomeFrame.add(b2);
@@ -515,9 +569,10 @@ class WelcomeScreenAndLogin {
 				// TODO Auto-generated method stub
 				b1.setBorderPainted(true);
 				b1.setBackground(Color.WHITE);
+				
 				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
-				b1.setOpaque(false);
+				//b1.setOpaque(false);
 				
 			}
 
@@ -558,7 +613,7 @@ class WelcomeScreenAndLogin {
 				b2.setBackground(Color.WHITE);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+				b2.setOpaque(true);
 			}
 
 			@Override
@@ -598,7 +653,7 @@ class WelcomeScreenAndLogin {
 				b3.setBackground(Color.WHITE);
 				b3.setForeground(Color.BLACK);
 				b3.setCursor(null);
-				b3.setOpaque(false);
+				b3.setOpaque(true);
 			}
 
 			@Override
@@ -639,7 +694,7 @@ class WelcomeScreenAndLogin {
 				b4.setBackground(Color.WHITE);
 				b4.setForeground(Color.BLACK);
 				b4.setCursor(null);
-				b4.setOpaque(false);
+				b4.setOpaque(true);
 			}
 
 			@Override
@@ -680,7 +735,7 @@ class WelcomeScreenAndLogin {
 				b5.setBackground(Color.WHITE);
 				b5.setForeground(Color.BLACK);
 				b5.setCursor(null);
-				b5.setOpaque(false);
+				b5.setOpaque(true);
 			}
 
 			@Override
@@ -721,7 +776,7 @@ class WelcomeScreenAndLogin {
 				b6.setBackground(Color.WHITE);
 				b6.setForeground(Color.BLACK);
 				b6.setCursor(null);
-				b6.setOpaque(false);
+				b6.setOpaque(true);
 			}
 
 			@Override
@@ -762,7 +817,7 @@ class WelcomeScreenAndLogin {
 				b7.setBackground(Color.WHITE);
 				b7.setForeground(Color.BLACK);
 				b7.setCursor(null);
-				b7.setOpaque(false);
+				b7.setOpaque(true);
 			}
 
 			@Override
@@ -802,7 +857,7 @@ class WelcomeScreenAndLogin {
 				b8.setBackground(Color.WHITE);
 				b8.setForeground(Color.BLACK);
 				b8.setCursor(null);
-				b8.setOpaque(false);
+				b8.setOpaque(true);
 			}
 
 			@Override
@@ -842,7 +897,7 @@ class WelcomeScreenAndLogin {
 				b9.setBackground(Color.WHITE);
 				b9.setForeground(Color.BLACK);
 				b9.setCursor(null);
-				b9.setOpaque(false);
+				b9.setOpaque(true);
 			}
 
 			@Override

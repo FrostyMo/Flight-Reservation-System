@@ -2,18 +2,24 @@ package mainPackage.ApplicationLayer;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import mainPackage.BusinessLayer.Customer_Handler;
 
@@ -25,7 +31,8 @@ public class Customer_PassengerDetails {
 	JTextField tf1, tf2, tf3, tf4, tf5;
 	JComboBox<String> list1, list2, list3, passengers, listDepart, listArrival, listClass;
 	JButton b1, b2;
-	
+	JPanel myPanel;
+	JLabel ecnic,eluggage, eage;
 	String ar[], ar1[], ar2;
 	private String name;
 	private String CNIC;
@@ -44,6 +51,7 @@ public class Customer_PassengerDetails {
 	int count;
 	//private String departure;
 	//private String arrival;
+	final static Font ERRORFORMAT = new Font("Verdana",Font.ITALIC,10);
 	
 	Customer_Handler cHandler;
 	
@@ -83,29 +91,69 @@ public class Customer_PassengerDetails {
 		b1 = new JButton("Submit");
 		b2 = new JButton("Cancel");
 		
+		eluggage=new JLabel("Should be a number!");
+		eage=new JLabel("Should be a number!");
+		ecnic=new JLabel("Format xxxx-xxxxxxx-x");
+		
+		myPanel = Customer_HomePage.customerPanel();
+		myPanel.setLayout(null);
+		f8.getContentPane().setBackground(new Color(0,0,0,0));
+		
+		ecnic.setBounds(200, 102, 200, 15);
+		eage.setBounds(200, 152, 200, 15);
+		eluggage.setBounds(200, 302, 200, 15);
+		
+		ecnic.setFont(ERRORFORMAT);
+		eage.setFont(ERRORFORMAT);
+		eluggage.setFont(ERRORFORMAT);
+		
+		ecnic.setForeground(Color.RED);
+		eage.setForeground(Color.RED);
+		eluggage.setForeground(Color.RED);
+		
+		ecnic.setBackground(null);
+		eage.setBackground(null);
+		eluggage.setBackground(null);
+		
+		ecnic.setVisible(false);
+		eage.setVisible(false);
+		eluggage.setVisible(false);
 		
 		l1.setBounds(30, 30, 120, 25);
-		l2.setBounds(30, 70, 120, 25);
-		l3.setBounds(30, 110, 120, 25);
-		l4.setBounds(30, 150, 120, 25);
-		l5.setBounds(30, 190, 120, 25);
-		l6.setBounds(30, 230, 150, 25);
-		l7.setBounds(30, 270, 120, 25);
-		l8.setBounds(30, 310, 150, 25);
+		l2.setBounds(30, 80, 120, 25);
+		l3.setBounds(30, 130, 120, 25);
+		l4.setBounds(30, 180, 120, 25);
+		l5.setBounds(30, 230, 120, 25);
+		l6.setBounds(30, 280, 150, 25);
+		l7.setBounds(30, 330, 120, 25);
+		l8.setBounds(30, 380, 150, 25);
 		
+		l1.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l2.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l3.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l4.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l5.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l6.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l7.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l8.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		
+		l1.setForeground(Color.WHITE);
+		l2.setForeground(Color.WHITE);
+		l3.setForeground(Color.WHITE);
+		l4.setForeground(Color.WHITE);
+		l5.setForeground(Color.WHITE);
+		l6.setForeground(Color.WHITE);
+		l7.setForeground(Color.WHITE);
+		l8.setForeground(Color.WHITE);
 		
 		tf1.setBounds(200, 30, 200, 25);	// name
-		tf2.setBounds(200, 70, 200, 25);	// cnic
-		tf3.setBounds(200, 110, 200, 25);	// age
-		list1.setBounds(200, 150, 200, 25);	// meal
-		list2.setBounds(200, 190, 200, 25); // seat
-		tf4.setBounds(200, 230, 200, 25);	// luggage
-		listClass.setBounds(200, 270, 200, 25);	// classes
-		list3.setBounds(200, 310, 200, 25);		// checkin
-		
-		
-		
-		
+		tf2.setBounds(200, 80, 200, 25);	// cnic
+		tf3.setBounds(200, 130, 200, 25);	// age
+		list1.setBounds(200, 180, 200, 25);	// meal
+		list2.setBounds(200, 230, 200, 25); // seat
+		tf4.setBounds(200, 280, 200, 25);	// luggage
+		listClass.setBounds(200, 330, 200, 25);	// classes
+		list3.setBounds(200, 380, 200, 25);		// checkin
 		
 		
 		list1.setBackground(Color.WHITE);
@@ -113,39 +161,54 @@ public class Customer_PassengerDetails {
 		list3.setBackground(Color.WHITE);
 		listClass.setBackground(Color.WHITE);
 		
-		b1.setBounds(50, 370, 120, 30);
-		b2.setBounds(200, 370, 120, 30);
+		b1.setBounds(110, 440, 120, 30);
+		b2.setBounds(260, 440, 120, 30);
 		
-		f8.add(l1);
-		f8.add(l2);
-		f8.add(l3);
-		f8.add(l4);
-		f8.add(l5);
-		f8.add(l6);
-		f8.add(l7);
-		f8.add(l8);
+		b1.setBackground(Color.WHITE);
+		b2.setBackground(Color.WHITE);
 		
-		f8.add(list1);
-		f8.add(tf1);
-		f8.add(tf2);
-		f8.add(list2);
-		f8.add(list3);
-		//f8.add(passengers);
-		f8.add(listClass);
-		f8.add(tf3);
-		f8.add(tf4);
-		//f8.add(tf5);
-		//f8.add(listDepart);
-		//f8.add(listArrival);
-		f8.add(b1);
-		f8.add(b2);
+		b1.setFocusable(false);
+		b2.setFocusable(false);
+		
+		b1.setOpaque(true);
+		b2.setOpaque(true);
+		
+		myPanel.add(l1);
+		myPanel.add(l2);
+		myPanel.add(l3);
+		myPanel.add(l4);
+		myPanel.add(l5);
+		myPanel.add(l6);
+		myPanel.add(l7);
+		myPanel.add(l8);
+		
+		myPanel.add(list1);
+		myPanel.add(tf1);
+		myPanel.add(tf2);
+		myPanel.add(list2);
+		myPanel.add(list3);
+		//myPanel.add(passengers);
+		myPanel.add(listClass);
+		myPanel.add(tf3);
+		myPanel.add(tf4);
+		//myPanel.add(tf5);
+		//myPanel.add(listDepart);
+		//myPanel.add(listArrival);
+		myPanel.add(b1);
+		myPanel.add(b2);
+		myPanel.add(ecnic);
+		myPanel.add(eluggage);
+		myPanel.add(eage);
 		
 		f8.setLayout(null);
-		f8.setSize(500, 450);
-		f8.setLocation((1366-420)/2, (768-450)/2);
-		f8.setResizable(false);
-		f8.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		f8.setPreferredSize(new Dimension(500,520));
+//		f9.setSize(600, 670);
+		f8.setLocation((1366-600)/2, (768-600)/2);
+		f8.setContentPane(myPanel);
+		f8.pack();
 		f8.setVisible(true);
+		f8.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//		f8.setVisible(true);
 		
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
@@ -210,7 +273,7 @@ public class Customer_PassengerDetails {
 				b1.setBackground(Color.WHITE);
 				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
-				b1.setOpaque(false);
+//				b1.setOpaque(false);
 			}
 
 			@Override
@@ -250,7 +313,7 @@ public class Customer_PassengerDetails {
 				b2.setBackground(Color.WHITE);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+//				b2.setOpaque(false);
 			}
 
 			@Override
@@ -275,7 +338,14 @@ public class Customer_PassengerDetails {
 		
 	}//end of constructor
 	
+	private static boolean validateCNIC(String CNIC) {
+		if(CNIC.matches("\\d{5}[-]\\d{7}[-]\\d{1}")) 
+			return true;
+		else {
+			return false;
+		}
 
+	}
 
 	private boolean showRecord() 
 	{
@@ -290,13 +360,62 @@ public class Customer_PassengerDetails {
 	}
 	
 	private boolean initializeDetails() {
+		Vector<Boolean> vec = new Vector<Boolean>();
+		boolean val = false;
 		added_Price = 0;
 		name = tf1.getText();
 		CNIC = tf2.getText();
 		age = tf3.getText();
 		luggage = tf4.getText();
-		if (Integer.parseInt(luggage)>40) {
-			added_Price +=5000;
+		Border border = BorderFactory.createLineBorder(Color.RED);
+		try {
+			if (Integer.parseInt(luggage)>40) {
+				added_Price +=5000;
+			}
+			tf4.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			eluggage.setVisible(false);
+			
+			val=true;
+		}
+		catch(Exception exc) {
+			// luggage incorrect 
+			tf4.setBorder(border);
+			eluggage.setVisible(true);
+//			eluggage.setOpaque(true);
+			val = false;
+			vec.add(val);
+		}
+		
+		try {
+			Integer.parseInt(age);
+				
+			tf3.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			eage.setVisible(false);
+			
+			val=true;
+		}
+		catch(Exception exc) {
+			// luggage incorrect 
+			tf3.setBorder(border);
+			eage.setVisible(true);
+//			eage.setOpaque(true);
+			val = false;
+			vec.add(val);
+		}
+		  
+		if (validateCNIC(CNIC)) {
+			tf2.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			ecnic.setVisible(false);
+			
+			val=true;
+		}
+		else {
+			// incorrect cnic
+			tf2.setBorder(border);
+			ecnic.setVisible(true);
+//			ecnic.setOpaque(true);
+			val = false;
+			vec.add(val);
 		}
 		meal_Option = (String) list1.getSelectedItem();
 		seat_Option = (String) list2.getSelectedItem();
@@ -310,8 +429,16 @@ public class Customer_PassengerDetails {
 		}
 		
 		
-		
-		return true;
+		if(vec.contains(false)) {
+			val=false;
+			JOptionPane.showMessageDialog(f8, "Enter Valid Details", "Error", JOptionPane.ERROR_MESSAGE);
+			System.out.println("some attribute invalid");
+		}
+		else {
+			val=true;
+			System.out.println("all correct");
+		}
+		return val;
 	}
 
 	private boolean validateForm() {

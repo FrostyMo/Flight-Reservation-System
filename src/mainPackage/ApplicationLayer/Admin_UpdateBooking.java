@@ -155,6 +155,15 @@ public class Admin_UpdateBooking {
 		b2.setBounds(120, 550, 150, 30);
 		b3.setBounds(340, 550, 150, 30);
 		
+		b2.setBackground(Color.WHITE);
+		b3.setBackground(Color.WHITE);
+		
+		b2.setFocusable(false);
+		b3.setFocusable(false);
+		
+		b2.setOpaque(true);
+		b3.setOpaque(true);
+		
 		getFlights();
 		myPanel.add(l1);
 		myPanel.add(l2);
@@ -287,7 +296,7 @@ public class Admin_UpdateBooking {
 				b2.setBackground(Color.WHITE);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+//				b2.setOpaque(false);
 			}
 
 			@Override
@@ -327,7 +336,7 @@ public class Admin_UpdateBooking {
 				b3.setBackground(Color.WHITE);
 				b3.setForeground(Color.BLACK);
 				b3.setCursor(null);
-				b3.setOpaque(false);
+//				b3.setOpaque(false);
 			}
 
 			@Override

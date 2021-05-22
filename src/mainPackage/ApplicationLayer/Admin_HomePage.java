@@ -126,6 +126,55 @@ class Admin_HomePage {
 		b9.setBounds(220, 300, 120, 30);
 		b10.setBounds(370, 300, 120, 30);
 		b12.setBounds(520, 300, 120, 30);
+		
+		b1.setBackground(Color.WHITE);
+		b2.setBackground(Color.WHITE);
+		b3.setBackground(Color.WHITE);
+		b4.setBackground(Color.WHITE);
+		b5.setBackground(Color.WHITE);
+		b6.setBackground(Color.WHITE);
+		b7.setBackground(Color.WHITE);
+		b8.setBackground(Color.WHITE);
+		b9.setBackground(Color.WHITE);
+		b10.setBackground(Color.WHITE);
+		b11.setBackground(Color.WHITE);
+		b12.setBackground(Color.WHITE);
+		
+		b1.setFocusable(false);
+		b2.setFocusable(false);
+		b3.setFocusable(false);
+		b4.setFocusable(false);
+		b5.setFocusable(false);
+		b6.setFocusable(false);
+		b7.setFocusable(false);
+		b8.setFocusable(false);
+		b9.setFocusable(false);
+		b10.setFocusable(false);
+		b11.setFocusable(false);
+		b12.setFocusable(false);
+		b5.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b6.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b7.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b8.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b9.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b10.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b11.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b12.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		
+		
+		b1.setOpaque(true);
+		b2.setOpaque(true);
+		b3.setOpaque(true);
+		b4.setOpaque(true);
+		b5.setOpaque(true);
+		b6.setOpaque(true);
+		b7.setOpaque(true);
+		b8.setOpaque(true);
+		b9.setOpaque(true);
+		b10.setOpaque(true);
+		b11.setOpaque(true);
+		b12.setOpaque(true);
+		
 		p1.setBounds(0, 0, 700, 400);
 		p2.setBounds(0, 0, 700, 400);
 		p4.setBounds(0, 120, 700, 300);
@@ -318,7 +367,7 @@ class Admin_HomePage {
 				b1.setBackground(Color.WHITE);
 				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
-				b1.setOpaque(false);
+				b1.setOpaque(true);
 			}
 
 			@Override
@@ -358,7 +407,7 @@ class Admin_HomePage {
 				b2.setBackground(Color.WHITE);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+				b2.setOpaque(true);
 			}
 
 			@Override
@@ -398,7 +447,7 @@ class Admin_HomePage {
 				b3.setBackground(Color.WHITE);
 				b3.setForeground(Color.BLACK);
 				b3.setCursor(null);
-				b3.setOpaque(false);
+				b3.setOpaque(true);
 			}
 
 			@Override
@@ -438,7 +487,7 @@ class Admin_HomePage {
 				b4.setBackground(Color.WHITE);
 				b4.setForeground(Color.BLACK);
 				b4.setCursor(null);
-				b4.setOpaque(false);
+				b4.setOpaque(true);
 			}
 
 			@Override
@@ -478,7 +527,7 @@ class Admin_HomePage {
 				b5.setBackground(Color.WHITE);
 				b5.setForeground(Color.BLACK);
 				b5.setCursor(null);
-				b5.setOpaque(false);
+				b5.setOpaque(true);
 			}
 
 			@Override
@@ -518,7 +567,7 @@ class Admin_HomePage {
 				b6.setBackground(Color.WHITE);
 				b6.setForeground(Color.BLACK);
 				b6.setCursor(null);
-				b6.setOpaque(false);
+				b6.setOpaque(true);
 			}
 
 			@Override
@@ -558,7 +607,7 @@ class Admin_HomePage {
 				b7.setBackground(Color.WHITE);
 				b7.setForeground(Color.BLACK);
 				b7.setCursor(null);
-				b7.setOpaque(false);
+				b7.setOpaque(true);
 			}
 
 			@Override
@@ -598,7 +647,7 @@ class Admin_HomePage {
 				b8.setBackground(Color.WHITE);
 				b8.setForeground(Color.BLACK);
 				b8.setCursor(null);
-				b8.setOpaque(false);
+				b8.setOpaque(true);
 			}
 
 			@Override
@@ -638,7 +687,7 @@ class Admin_HomePage {
 				b9.setBackground(Color.WHITE);
 				b9.setForeground(Color.BLACK);
 				b9.setCursor(null);
-				b9.setOpaque(false);
+				b9.setOpaque(true);
 			}
 
 			@Override
@@ -678,7 +727,7 @@ class Admin_HomePage {
 				b10.setBackground(Color.WHITE);
 				b10.setForeground(Color.BLACK);
 				b10.setCursor(null);
-				b10.setOpaque(false);
+				b10.setOpaque(true);
 			}
 
 			@Override
@@ -718,7 +767,7 @@ class Admin_HomePage {
 				b12.setBackground(Color.WHITE);
 				b12.setForeground(Color.BLACK);
 				b12.setCursor(null);
-				b12.setOpaque(false);
+				b12.setOpaque(true);
 			}
 
 			@Override
@@ -758,7 +807,7 @@ class Admin_HomePage {
 				b11.setBackground(Color.WHITE);
 				b11.setForeground(Color.BLACK);
 				b11.setCursor(null);
-				b11.setOpaque(false);
+				b11.setOpaque(true);
 			}
 
 			@Override

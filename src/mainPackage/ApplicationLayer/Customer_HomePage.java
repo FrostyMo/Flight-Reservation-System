@@ -3,6 +3,10 @@ package mainPackage.ApplicationLayer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -67,12 +71,20 @@ public class Customer_HomePage {
 		l8 = new JLabel();
 		l10 = new JLabel();
 		
+		l1.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l2.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l3.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		
+		l1.setForeground(Color.WHITE);
+		l2.setForeground(Color.WHITE);
+		l3.setForeground(Color.WHITE);
+		
 		pf1 = new JPasswordField();
 		pf2 = new JPasswordField();
 		pf3 = new JPasswordField();
 		p1 = new JPanel();
 		p2 = new JPanel();
-		p4 = new JPanel();
+		p4 = Customer_HomePage.customerPanel();
 		
 
 		//l4.setBounds(40, 150, 150, 150);
@@ -113,17 +125,59 @@ public class Customer_HomePage {
 		b8.setBounds(70, 300, 150, 30);
 		b9.setBounds(280, 300, 150, 30);
 		b10.setBounds(490, 300, 150, 30);
+		
+		b1.setBackground(WelcomeScreenAndLogin.mypurp);
+		b2.setBackground(WelcomeScreenAndLogin.mypurp);
+		b3.setBackground(WelcomeScreenAndLogin.mypurp);
+		b4.setBackground(WelcomeScreenAndLogin.mypurp);
+		
+		b6.setBackground(Color.WHITE);
+		b8.setBackground(Color.WHITE);
+		b9.setBackground(Color.WHITE);
+		b10.setBackground(Color.WHITE);
+		b11.setBackground(Color.WHITE);
+		
+		b6.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b8.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b9.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		b10.setBorder(WelcomeScreenAndLogin.BORDERBLACK);
+		
+		b1.setForeground(Color.WHITE);
+		b2.setForeground(Color.WHITE);
+		b3.setForeground(Color.WHITE);
+		b4.setForeground(Color.WHITE);
+		
+		b1.setOpaque(true);
+		b2.setOpaque(true);
+		b3.setOpaque(true);
+		b4.setOpaque(true);
+		b6.setOpaque(true);
+		b8.setOpaque(true);
+		b9.setOpaque(true);
+		b10.setOpaque(true);
+		b11.setOpaque(true);
+		
+		b1.setFocusable(false);
+		b2.setFocusable(false);
+		b3.setFocusable(false);
+		b4.setFocusable(false);
+		b6.setFocusable(false);
+		b8.setFocusable(false);
+		b9.setFocusable(false);
+		b10.setFocusable(false);
+		b11.setFocusable(false);
+		
 		p1.setBounds(0, 0, 700, 400);
 		p2.setBounds(0, 0, 700, 400);
 		p4.setBounds(0, 120, 700, 300);
 		
-		pf1.setBounds(260, 50, 250, 30);
-		pf2.setBounds(260, 110, 250, 30);
-		pf3.setBounds(260, 170, 250, 30);
-		l1.setBounds(60, 50, 200, 30);
-		l2.setBounds(60, 110, 200, 30);
-		l3.setBounds(60, 170, 200, 30);
-		b11.setBounds(120, 230, 200, 30);
+		pf1.setBounds(310, 50, 250, 30);
+		pf2.setBounds(310, 110, 250, 30);
+		pf3.setBounds(310, 170, 250, 30);
+		l1.setBounds(60, 50, 250, 30);
+		l2.setBounds(60, 110, 250, 30);
+		l3.setBounds(60, 170, 250, 30);
+		b11.setBounds(230, 230, 200, 30);
 		
 		BufferedImage myImage = null;
 		try {
@@ -281,7 +335,7 @@ public class Customer_HomePage {
 				// TODO Auto-generated method stub
 				b1.setBorderPainted(false);
 				b1.setOpaque(true);
-				b1.setBackground(Admin_HomePage.mypurp);
+				b1.setBackground(WelcomeScreenAndLogin.mypurp2);
 				b1.setForeground(Color.WHITE);
 				b1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				
@@ -291,10 +345,10 @@ public class Customer_HomePage {
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				b1.setBorderPainted(true);
-				b1.setBackground(Color.WHITE);
-				b1.setForeground(Color.BLACK);
+				b1.setBackground(WelcomeScreenAndLogin.mypurp);
+//				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
-				b1.setOpaque(false);
+//				b1.setOpaque(false);
 			}
 
 			@Override
@@ -321,7 +375,7 @@ public class Customer_HomePage {
 				// TODO Auto-generated method stub
 				b2.setBorderPainted(false);
 				b2.setOpaque(true);
-				b2.setBackground(Admin_HomePage.mypurp);
+				b2.setBackground(WelcomeScreenAndLogin.mypurp2);
 				b2.setForeground(Color.WHITE);
 				b2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				
@@ -331,10 +385,10 @@ public class Customer_HomePage {
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				b2.setBorderPainted(true);
-				b2.setBackground(Color.WHITE);
-				b2.setForeground(Color.BLACK);
+				b2.setBackground(WelcomeScreenAndLogin.mypurp);
+//				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+//				b2.setOpaque(false);
 			}
 
 			@Override
@@ -361,7 +415,7 @@ public class Customer_HomePage {
 				// TODO Auto-generated method stub
 				b3.setBorderPainted(false);
 				b3.setOpaque(true);
-				b3.setBackground(Admin_HomePage.mypurp);
+				b3.setBackground(WelcomeScreenAndLogin.mypurp2);
 				b3.setForeground(Color.WHITE);
 				b3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				
@@ -371,10 +425,10 @@ public class Customer_HomePage {
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				b3.setBorderPainted(true);
-				b3.setBackground(Color.WHITE);
-				b3.setForeground(Color.BLACK);
+				b3.setBackground(WelcomeScreenAndLogin.mypurp);
+//				b3.setForeground(Color.BLACK);
 				b3.setCursor(null);
-				b3.setOpaque(false);
+//				b3.setOpaque(false);
 			}
 
 			@Override
@@ -401,7 +455,7 @@ public class Customer_HomePage {
 				// TODO Auto-generated method stub
 				b4.setBorderPainted(false);
 				b4.setOpaque(true);
-				b4.setBackground(Admin_HomePage.mypurp);
+				b4.setBackground(WelcomeScreenAndLogin.mypurp2);
 				b4.setForeground(Color.WHITE);
 				b4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				
@@ -411,10 +465,10 @@ public class Customer_HomePage {
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				b4.setBorderPainted(true);
-				b4.setBackground(Color.WHITE);
-				b4.setForeground(Color.BLACK);
+				b4.setBackground(WelcomeScreenAndLogin.mypurp);
+//				b4.setForeground(Color.BLACK);
 				b4.setCursor(null);
-				b4.setOpaque(false);
+//				b4.setOpaque(false);
 			}
 
 			@Override
@@ -494,7 +548,7 @@ public class Customer_HomePage {
 				b6.setBackground(Color.WHITE);
 				b6.setForeground(Color.BLACK);
 				b6.setCursor(null);
-				b6.setOpaque(false);
+//				b6.setOpaque(false);
 			}
 
 			@Override
@@ -574,7 +628,7 @@ public class Customer_HomePage {
 				b8.setBackground(Color.WHITE);
 				b8.setForeground(Color.BLACK);
 				b8.setCursor(null);
-				b8.setOpaque(false);
+//				b8.setOpaque(false);
 			}
 
 			@Override
@@ -614,7 +668,7 @@ public class Customer_HomePage {
 				b9.setBackground(Color.WHITE);
 				b9.setForeground(Color.BLACK);
 				b9.setCursor(null);
-				b9.setOpaque(false);
+//				b9.setOpaque(false);
 			}
 
 			@Override
@@ -654,7 +708,7 @@ public class Customer_HomePage {
 				b10.setBackground(Color.WHITE);
 				b10.setForeground(Color.BLACK);
 				b10.setCursor(null);
-				b10.setOpaque(false);
+//				b10.setOpaque(false);
 			}
 
 			@Override
@@ -694,7 +748,7 @@ public class Customer_HomePage {
 				b11.setBackground(Color.WHITE);
 				b11.setForeground(Color.BLACK);
 				b11.setCursor(null);
-				b11.setOpaque(false);
+//				b11.setOpaque(false);
 			}
 
 			@Override
@@ -743,4 +797,16 @@ public class Customer_HomePage {
 		}
 	}
 
+	public static JPanel customerPanel() {
+		JPanel myPanel = new JPanel() {
+			   protected void paintComponent(Graphics g) {
+			      Paint p = new GradientPaint(0.0f, getHeight()/3, new Color(9, 32, 63, 255),
+			       getWidth(), getHeight(), new Color(83, 120, 149, 200), true);
+			      Graphics2D g2d = (Graphics2D)g;
+			      g2d.setPaint(p);
+			      g2d.fillRect(0, 0, getWidth(), getHeight());
+			   }
+		};
+		return myPanel;
+	}
 }

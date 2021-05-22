@@ -2,29 +2,42 @@ package mainPackage.ApplicationLayer;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import mainPackage.BusinessLayer.Customer_Handler;
 
 public class Customer_BookFlight {
 
 	JFrame f8;
-	JLabel l1, l2, l3, l4, l5, l6, l7, l8;
+	JLabel l1, l2, l3, l4, l5, l6, l7, l8, eDate;
 	JTextField tf1, tf2, tf3, tf4, tf5;
 	JComboBox<String> list1, list2, list3, passengers, listDepart, listArrival, listClass;
 	JButton b1, b2;
+	JPanel myPanel, myPanel1;
 	
 	String ar[], ar1[], ar2;
 	//private String flightType;
@@ -45,6 +58,10 @@ public class Customer_BookFlight {
 	Customer_BookFlight(String user) {
 		userName = user;
 		f8 = new JFrame("Information Form");
+		f8.setLayout(null);
+//		f8.setPreferredSize(new Dimension(530,450));
+		f8.setSize(530,450);
+		f8.setLocation((1366-420)/2, (768-450)/2);
 		l1 = new JLabel("Flight Type : ");
 		l2 = new JLabel("# of Passengers : ");
 		l3 = new JLabel("Class: ");
@@ -76,24 +93,74 @@ public class Customer_BookFlight {
 		b1 = new JButton("Search");
 		b2 = new JButton("Cancel");
 		
-		l1.setBounds(30, 30, 120, 25);
-		l2.setBounds(30, 70, 120, 25);
-		l3.setBounds(30, 110, 120, 25);
-		l4.setBounds(30, 150, 120, 25);
-		l5.setBounds(30, 190, 120, 25);
-		l6.setBounds(30, 230, 150, 25);
+		
+		eDate=new JLabel("Correct Format: (DD/MM/YYYY)");
+		eDate.setBounds(250, 302, 200, 15);
+		eDate.setFont(Admin_SignUp.ERRORFORMAT);
+		eDate.setForeground(Color.RED);
+		eDate.setOpaque(true);
+		eDate.setVisible(false);
+		
+		myPanel = Customer_HomePage.customerPanel();
+		myPanel.setLayout(null);
+//		f8.getContentPane().setBackground(new Color(0,0,0,0));
+		
+		String workingDirectory = System.getProperty("user.dir");
+		String requiredDirectory = workingDirectory + "/" + "src/mainPackage/images/";
+		
+		BufferedImage myImage = null;
+		try {
+			
+			myImage = ImageIO.read(new File(requiredDirectory+"flights1.jpg"));
+			myImage = WelcomeScreenAndLogin.resize(myImage, 710, 450);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		f8.setContentPane(new ImagePanel(myImage));
 		
 		
-		list1.setBounds(200, 30, 200, 25);
-		passengers.setBounds(200, 70, 200, 25);
-		listClass.setBounds(200, 110, 200, 25);
-		list2.setBounds(200, 150, 200, 25);
-		list3.setBounds(200, 190, 200, 25);
-		tf3.setBounds(200, 230, 200, 25);
+		
+		l1.setBounds(30, 30, 180, 25);
+		l2.setBounds(30, 80, 180, 25);
+		l3.setBounds(30, 130, 180, 25);
+		l4.setBounds(30, 180, 180, 25);
+		l5.setBounds(30, 230, 180, 25);
+		l6.setBounds(30, 280, 210, 25);
+		
+		l1.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l2.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l3.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l4.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l5.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		l6.setFont(WelcomeScreenAndLogin.WHITELABEL);
+		
+		l1.setForeground(Color.WHITE);
+		l2.setForeground(Color.WHITE);
+		l3.setForeground(Color.WHITE);
+		l4.setForeground(Color.WHITE);
+		l5.setForeground(Color.WHITE);
+		l6.setForeground(Color.WHITE);
+		
+		
+		list1.setBounds(250, 30, 220, 25);
+		passengers.setBounds(250, 80, 220, 25);
+		listClass.setBounds(250, 130, 220, 25);
+		list2.setBounds(250, 180, 220, 25);
+		list3.setBounds(250, 230, 220, 25);
+		tf3.setBounds(250, 280, 200, 25);
 		//tf4.setBounds(200, 270, 200, 25);
 		//tf5.setBounds(200, 310, 200, 25);
 		
-		
+		DefaultListCellRenderer listRenderer = new DefaultListCellRenderer();
+	    listRenderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
+	    
+	    list1.setRenderer(listRenderer);
+	    list2.setRenderer(listRenderer);
+	    list3.setRenderer(listRenderer);
+	    listClass.setRenderer(listRenderer);
+	    passengers.setRenderer(listRenderer);
+	    
 		list1.setBackground(Color.WHITE);
 		list2.setBackground(Color.WHITE);
 		list3.setBackground(Color.WHITE);
@@ -102,38 +169,46 @@ public class Customer_BookFlight {
 		listArrival.setBackground(Color.WHITE);
 		listClass.setBackground(Color.WHITE);
 		
-		b1.setBounds(50, 370, 120, 30);
-		b2.setBounds(200, 370, 120, 30);
+		b1.setBounds(120, 370, 120, 30);
+		b2.setBounds(270, 370, 120, 30);
 		
-		f8.add(l1);
-		f8.add(l2);
-		f8.add(l3);
-		f8.add(l4);
-		f8.add(l5);
-		f8.add(l6);
+		b1.setBackground(Color.WHITE);
+		b2.setBackground(Color.WHITE);
+		myPanel.setBounds(0, 0, 530, 350);
+		myPanel.add(l1);
+		myPanel.add(l2);
+		myPanel.add(l3);
+		myPanel.add(l4);
+		myPanel.add(l5);
+		myPanel.add(l6);
 		
-		f8.add(list1);
-		//f8.add(tf1);
-		//f8.add(tf2);
-		f8.add(list2);
-		f8.add(list3);
-		f8.add(passengers);
-		f8.add(listClass);
-		f8.add(tf3);
-		//f8.add(tf4);
-		//f8.add(tf5);
-		//f8.add(listDepart);
-		//f8.add(listArrival);
+		myPanel.add(list1);
+		//myPanel.add(tf1);
+		//myPanel.add(tf2);
+		myPanel.add(list2);
+		myPanel.add(list3);
+		myPanel.add(passengers);
+		myPanel.add(listClass);
+		myPanel.add(tf3);
+		myPanel.add(eDate);
+		//myPanel.add(tf4);
+		//myPanel.add(tf5);
+		//myPanel.add(listDepart);
+		//myPanel.add(listArrival);
+//		myPanel.add(b1);
+//		myPanel.add(b2);
+	
+		myPanel.setVisible(false);
+		f8.add(myPanel);
 		f8.add(b1);
 		f8.add(b2);
-		
-		f8.setLayout(null);
-		f8.setSize(500, 450);
-		f8.setLocation((1366-420)/2, (768-450)/2);
-		f8.setResizable(false);
-		f8.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	
+//		f8.pack();
 		f8.setVisible(true);
-		
+		f8.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		f8.setResizable(false);
+//		f8.setVisible(true);
+		myPanel.setVisible(true);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
@@ -178,7 +253,7 @@ public class Customer_BookFlight {
 				b1.setBackground(Color.WHITE);
 				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
-				b1.setOpaque(false);
+//				b1.setOpaque(false);
 			}
 
 			@Override
@@ -218,7 +293,7 @@ public class Customer_BookFlight {
 				b2.setBackground(Color.WHITE);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
-				b2.setOpaque(false);
+//				b2.setOpaque(false);
 			}
 
 			@Override
@@ -296,14 +371,23 @@ public class Customer_BookFlight {
 					"ERROR", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
-		
-		try {
 		dates = tf3.getText();
-		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(f8, "Invalid date",
-					"ERROR", JOptionPane.ERROR_MESSAGE);
+		try {
+		    DateTimeFormatter formatter =
+		                      DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		    LocalDate date = LocalDate.parse(dates, formatter);
+		    System.out.printf("%s%n", date);
+		    eDate.setVisible(false);
+			tf3.setBorder(null);
+		}
+		catch (DateTimeParseException exc) {
+		    System.out.printf("%s is not parsable!%n", dates);
+		    eDate.setVisible(true);
+			Border border = BorderFactory.createLineBorder(Color.RED,2);
+			tf3.setBorder(border);
 			return false;
 		}
+		
 		
 		return true;
 	}

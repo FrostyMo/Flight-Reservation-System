@@ -207,6 +207,7 @@ public class Admin_SignUp {
 		b2.setOpaque(true);
 		b3.setOpaque(true);
 		auto_load.setOpaque(true);
+		auto_load.setFocusable(false);
 		// sp1.setBounds(250, 260, 300, 40);
 		BufferedImage myImage = null;
 
@@ -224,12 +225,12 @@ public class Admin_SignUp {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try{
-			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-		}
-		catch(Exception e){
-			e.printStackTrace(); 
-		}
+//		try{
+//			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+//		}
+//		catch(Exception e){
+//			e.printStackTrace(); 
+//		}
 		f5.setContentPane(new ImagePanel(myImage));
 		f5.setLayout(null);
 		f5.setSize(640, 700);
@@ -339,7 +340,7 @@ public class Admin_SignUp {
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				b1.setBorderPainted(true);
-				b1.setBackground(Color.WHITE);
+				b1.setBackground(null);
 				b1.setForeground(Color.BLACK);
 				b1.setCursor(null);
 //				b1.setOpaque(false);
@@ -379,7 +380,7 @@ public class Admin_SignUp {
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				b2.setBorderPainted(true);
-				b2.setBackground(Color.WHITE);
+				b2.setBackground(null);
 				b2.setForeground(Color.BLACK);
 				b2.setCursor(null);
 //				b2.setOpaque(false);
@@ -420,7 +421,7 @@ public class Admin_SignUp {
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				b3.setBorderPainted(true);
-				b3.setBackground(Color.WHITE);
+				b3.setBackground(null);
 				b3.setForeground(Color.BLACK);
 				b3.setCursor(null);
 //				b3.setOpaque(false);
@@ -464,6 +465,7 @@ public class Admin_SignUp {
 				auto_load.setBackground(WelcomeScreenAndLogin.mypurp);
 				auto_load.setForeground(Color.WHITE);
 				auto_load.setCursor(null);
+				
 //				auto_load.setOpaque(false);
 			}
 
