@@ -40,6 +40,8 @@ class WelcomeScreenAndLogin {
 	Login login = new Login();
 	final static Color myblue = new Color(6, 13, 83);
 	final static Color myred = new Color(75, 25, 27);
+	final static Color mypurp = new Color(106, 13, 173);
+	final static Color mypurp2 = new Color(87, 17, 138);
 	static String requiredDirectory = System.getProperty("user.dir") + "/" + "src/mainPackage/images/";
 	static String buttonPath = requiredDirectory + "button.wav";
 	@SuppressWarnings("static-access")
@@ -327,10 +329,7 @@ class WelcomeScreenAndLogin {
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				WelcomeScreenAndLogin.buttonSound();
-				if (arg0.getButton() == MouseEvent.BUTTON1) {
-					JOptionPane.showMessageDialog(f5, "Customer Sign Up is not yet implemented. Sori :(", "Hi", JOptionPane.INFORMATION_MESSAGE);
-				}
-				//new Admin_SignUp();
+				new Customer_SignUp();
 			}
 
 			@Override

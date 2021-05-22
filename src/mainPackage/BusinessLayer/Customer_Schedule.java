@@ -88,13 +88,13 @@ public class Customer_Schedule {
 			return flightlist;
 	}
 	
-	public ArrayList<String[]> ViewSched() {
+	public ArrayList<String[]> ViewSched(String choice) {
 		ArrayList<String[]> flightlist = new ArrayList<String[]>();
 		
 		Vector<String> flightsV = new Vector<String>(10);
 		ResultSet rs = null;
 		try {
-			rs = FRS_DataBase.ExecuteQueryRS("SELECT * FROM FRS_CUSTOMER_VIEW");
+			rs = FRS_DataBase.ExecuteQueryRS("SELECT * FROM FRS_CUSTOMER_VIEW order by "+ choice);
 			ResultSetMetaData rsm = rs.getMetaData();
 			int col = rsm.getColumnCount();
 			

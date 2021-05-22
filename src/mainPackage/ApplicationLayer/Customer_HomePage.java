@@ -271,7 +271,7 @@ public class Customer_HomePage {
 		b10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
-				new Customer_ViewFlights(userName).Check_Flight();
+				new Customer_ViewFlights(userName, "NONE");
 			}
 		});
 		

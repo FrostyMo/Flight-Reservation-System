@@ -27,8 +27,8 @@ public class Customer_Handler {
 		return eB.AddBooking(FlightID, Passengers, user);
 	}
 	
-	public ArrayList<String[]> ViewSched() {
-		return sD.ViewSched();
+	public ArrayList<String[]> ViewSched(String choice) {
+		return sD.ViewSched(choice);
 	}
 	public ArrayList<String[]> ViewSched(String from, String to, String date, String passengers, String classType) {
 		return sD.ViewSched(from, to, date, passengers, classType);
@@ -100,4 +100,17 @@ public class Customer_Handler {
 	public String GenerateNewTicketID() {
 		return cS.GenerateNewTicketID();
 	}
+	
+	public String GenerateCustomerID() {
+		return cI.GenerateCustomerID();
+	}
+	
+	
+	public boolean userExists(String username) {
+		return cI.userExists(username);
+	}
+	public boolean AddCustomer(String custID, String name, String user,  String pass, long cnic, int age, String gender, String address, String joindate, String nation, long phone, long passport) {
+		return cI.AddCustomer(custID, name,user, pass, cnic, age, gender, address, joindate, nation, phone, passport);
+	}
+
 }

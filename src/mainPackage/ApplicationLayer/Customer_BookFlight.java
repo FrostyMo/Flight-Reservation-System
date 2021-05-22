@@ -278,7 +278,7 @@ public class Customer_BookFlight {
 
 	private boolean showRecord() 
 	{
-		Customer_ViewFlights obj = new Customer_ViewFlights(userName);
+		Customer_ViewFlights obj = new Customer_ViewFlights(userName, "YES");
 		obj.Check_Flight(source, destination, dates, numPassengers, classType);
 		f8.setVisible(false);
 		//new Passenger_Details(Integer.parseInt(numPassengers), cH.AddBooking(fID, numPassengers,userName));

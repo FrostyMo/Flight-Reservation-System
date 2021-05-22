@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
-import java.util.concurrent.ThreadLocalRandom;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -41,24 +40,28 @@ import javax.swing.border.Border;
 import javax.swing.plaf.LayerUI;
 import javax.swing.text.JTextComponent;
 
-import mainPackage.BusinessLayer.Admin_Handler;
+import java.util.concurrent.ThreadLocalRandom;
+import mainPackage.BusinessLayer.Customer_Handler;
 
-public class Admin_SignUp {
+public class Customer_SignUp {
 	JFrame f5;
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, lempID, signup_label;
+	JLabel l2_username;
 	JTextField tName, tAge, tCnic, tPhone, tGender, tNationality, tPassport;
 	// new code
-	JLabel ecnic, ephone, epassport, egender, eage;
+	JTextField tUser;
+	JLabel ecnic, ephone, epassport, egender, eage, eUser;
 	JPasswordField pf1;
 	JTextArea ta1;
 	JButton b1, b2, b3, auto_load;
 	JScrollPane sp1;
 	// new
-	private String AdminID;
-	private String AdminName;
-	private String AdminPassword;
+	private String CustomerID;
+	private String CustomerName;
+	private String CustomerUsername;
+	private String CustomerPassword;
 	private int age;
-	private String AdminAddress;
+	private String CustomerAddress;
 	private String gender;
 	private String phone;
 	private String nation;
@@ -66,7 +69,7 @@ public class Admin_SignUp {
 	private String cnic;
 	private String joinDate;
 	ArrayList<String[]> auto_data;
-	Admin_Handler aH;
+	Customer_Handler cH;
 
 	final static Border TEXTFIELDBORDER = BorderFactory.createLineBorder(Color.ORANGE, 2);
 	final static Border border = BorderFactory.createLineBorder(Color.RED);
@@ -80,16 +83,19 @@ public class Admin_SignUp {
 
 	// Person_ID,Assistant_ID,Assistant_Password,Join_Date
 	// Person_ID,Person_Name,CNIC,Age,Address,Gender,Nationality,Phone_No,Passport_No
-	public Admin_SignUp() {
-		aH = new Admin_Handler();
-		AdminID = aH.GenerateAdmID();
-
+	public Customer_SignUp() {
+		
+		
+		cH = new Customer_Handler();
+		CustomerID = cH.GenerateCustomerID();
+		
 		// Load the array of test data
 		load_auto();
 		
-		f5 = new JFrame("Admin SignUp");
-		l1 = new JLabel("Admin ID : ");
-		l2 = new JLabel("Admin Name  : ");
+		f5 = new JFrame("Customer SignUp");
+		l1 = new JLabel("Customer ID : ");
+		l2 = new JLabel("Customer Name  : ");
+		l2_username = new JLabel("User Name: ");
 		l3 = new JLabel("Password  : ");
 		l4 = new JLabel("CNIC  : ");
 		l5 = new JLabel("Address: ");
@@ -98,7 +104,7 @@ public class Admin_SignUp {
 		l8 = new JLabel("Nationality : ");
 		l9 = new JLabel("Phone No : ");
 		l10 = new JLabel("Passport No : ");
-		lempID = new JLabel(AdminID, SwingConstants.CENTER);
+		lempID = new JLabel(CustomerID, SwingConstants.CENTER);
 		tName = new JTextField();
 		tCnic = new JTextField();
 		tAge = new JTextField();
@@ -106,7 +112,10 @@ public class Admin_SignUp {
 		tNationality = new JTextField();
 		tPhone = new JTextField();
 		tPassport = new JTextField();
+		
+		tUser = new JTextField();
 		// new code for error msgs
+		eUser = new JLabel();
 		ecnic = new JLabel();
 		ephone = new JLabel();
 		egender = new JLabel();
@@ -118,6 +127,7 @@ public class Admin_SignUp {
 
 		l1.setForeground(Color.WHITE);
 		l2.setForeground(Color.WHITE);
+		l2_username.setForeground(Color.WHITE);
 		l3.setForeground(Color.WHITE);
 		l4.setForeground(Color.WHITE);
 		l5.setForeground(Color.WHITE);
@@ -129,6 +139,7 @@ public class Admin_SignUp {
 		// new code for error msgs
 
 		tName.setBorder(TEXTFIELDBORDER);
+		tUser.setBorder(TEXTFIELDBORDER);
 		tCnic.setBorder(TEXTFIELDBORDER);
 		tAge.setBorder(TEXTFIELDBORDER);
 		tGender.setBorder(TEXTFIELDBORDER);
@@ -139,31 +150,36 @@ public class Admin_SignUp {
 		pf1.setBorder(TEXTFIELDBORDER);
 
 		lempID.setBorder(TEXTFIELDBORDER);
-
+		
 		ecnic = new JLabel("Format xxxx-xxxxxxx-x");
 		ephone = new JLabel("Format xxxx-xxxxxxx");
 		egender = new JLabel("Enter M or F");
 		eage = new JLabel("Should be a number!");
 		epassport = new JLabel("Format: 9 digit number only");
+		eUser = new JLabel("Already Exists");
 
-		ecnic.setBounds(200, 232, 200, 15);
-		ephone.setBounds(200, 552, 200, 15);
-		egender.setBounds(200, 452, 200, 15);
-		eage.setBounds(200, 402, 200, 15);
-		epassport.setBounds(200, 602, 200, 15);
+		eUser.setBounds(200, 182, 200, 15);
+		ecnic.setBounds(200, 282, 200, 15);
+		ephone.setBounds(200, 602, 200, 15);
+		egender.setBounds(200, 502, 200, 15);
+		eage.setBounds(200, 452, 200, 15);
+		epassport.setBounds(200, 652, 200, 15);
 
 		ecnic.setFont(ERRORFORMAT);
+		eUser.setFont(ERRORFORMAT);
 		ephone.setFont(ERRORFORMAT);
 		egender.setFont(ERRORFORMAT);
 		eage.setFont(ERRORFORMAT);
 		epassport.setFont(ERRORFORMAT);
 
+		eUser.setForeground(Color.RED);
 		ecnic.setForeground(Color.RED);
 		ephone.setForeground(Color.RED);
 		egender.setForeground(Color.RED);
 		eage.setForeground(Color.RED);
 		epassport.setForeground(Color.RED);
 
+		eUser.setVisible(false);
 		ecnic.setVisible(false);
 		ephone.setVisible(false);
 		egender.setVisible(false);
@@ -178,28 +194,30 @@ public class Admin_SignUp {
 
 		l1.setBounds(40, 50, 140, 30);
 		l2.setBounds(40, 100, 140, 30);
-		l3.setBounds(40, 150, 140, 30);
-		l4.setBounds(40, 200, 140, 30);
-		l5.setBounds(40, 250, 140, 30);
-		l6.setBounds(40, 370, 140, 30);
-		l7.setBounds(40, 420, 140, 30);
-		l8.setBounds(40, 470, 140, 30);
-		l9.setBounds(40, 520, 140, 30);
-		l10.setBounds(40, 570, 140, 30);
+		l2_username.setBounds(40, 150, 140, 30);
+		l3.setBounds(40, 200, 140, 30);
+		l4.setBounds(40, 250, 140, 30);
+		l5.setBounds(40, 300, 140, 30);
+		l6.setBounds(40, 420, 140, 30);
+		l7.setBounds(40, 470, 140, 30);
+		l8.setBounds(40, 520, 140, 30);
+		l9.setBounds(40, 570, 140, 30);
+		l10.setBounds(40, 620, 140, 30);
 		lempID.setBounds(200, 50, 300, 30);
 		tName.setBounds(200, 100, 300, 30);
-		pf1.setBounds(200, 150, 300, 30);
-		tCnic.setBounds(200, 200, 300, 30);
-		ta1.setBounds(205, 250, 290, 100);
-		tAge.setBounds(200, 370, 300, 30);
-		tGender.setBounds(200, 420, 300, 30);
-		tNationality.setBounds(200, 470, 300, 30);
-		tPhone.setBounds(200, 520, 300, 30);
-		tPassport.setBounds(200, 570, 300, 30);
+		tUser.setBounds(200, 150, 300, 30);
+		pf1.setBounds(200, 200, 300, 30);
+		tCnic.setBounds(200, 250, 300, 30);
+		ta1.setBounds(205, 300, 290, 100);
+		tAge.setBounds(200, 420, 300, 30);
+		tGender.setBounds(200, 470, 300, 30);
+		tNationality.setBounds(200, 520, 300, 30);
+		tPhone.setBounds(200, 570, 300, 30);
+		tPassport.setBounds(200, 620, 300, 30);
 
-		b1.setBounds(80, 620, 150, 30);
-		b2.setBounds(270, 620, 120, 30);
-		b3.setBounds(460, 620, 120, 30);
+		b1.setBounds(80, 670, 150, 30);
+		b2.setBounds(270, 670, 120, 30);
+		b3.setBounds(460, 670, 120, 30);
 		auto_load.setBounds(510, 10, 120, 30);
 		auto_load.setBackground(WelcomeScreenAndLogin.mypurp);
 		auto_load.setForeground(Color.WHITE);
@@ -232,15 +250,16 @@ public class Admin_SignUp {
 		}
 		f5.setContentPane(new ImagePanel(myImage));
 		f5.setLayout(null);
-		f5.setSize(640, 700);
+		f5.setSize(640, 750);
 		f5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		f5.setLocation((1366 - 640) / 2, (768 - 700) / 2);
 		lempID.setOpaque(true);
-		lempID.setBackground(Admin_HomePage.myred);
+		lempID.setBackground(WelcomeScreenAndLogin.myred);
 		lempID.setForeground(Color.WHITE);
 		f5.setResizable(false);
 		f5.add(l1);
 		f5.add(l2);
+		f5.add(l2_username);
 		f5.add(l3);
 		f5.add(l4);
 		f5.add(l5);
@@ -251,6 +270,7 @@ public class Admin_SignUp {
 		f5.add(l10);
 		f5.add(lempID);
 		f5.add(tName);
+		f5.add(tUser);
 		f5.add(tAge);
 		f5.add(tCnic);
 		f5.add(ta1);
@@ -260,6 +280,7 @@ public class Admin_SignUp {
 		f5.add(tGender);
 		f5.add(tPassport);
 
+		f5.add(eUser);
 		f5.add(ecnic);
 		f5.add(ephone);
 		f5.add(egender);
@@ -272,7 +293,7 @@ public class Admin_SignUp {
 		f5.add(auto_load);
 		f5.add(sp1);
 		f5.setVisible(true);
-		
+
 		b1.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent ae) {
@@ -280,7 +301,7 @@ public class Admin_SignUp {
 				if (validateForm()) {
 					if (initializeDetails()) {
 						if (createRecord()) {
-							JOptionPane.showMessageDialog(f5, "Admin Created");
+							JOptionPane.showMessageDialog(f5, "Customer Created");
 							f5.setVisible(false);
 						} else {
 							JOptionPane.showMessageDialog(f5, "Record Not Created");
@@ -305,6 +326,7 @@ public class Admin_SignUp {
 				clear_Labels();
 			}
 		});
+		
 		auto_load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				WelcomeScreenAndLogin.buttonSound();
@@ -312,17 +334,19 @@ public class Admin_SignUp {
 				String[] lineRead = auto_data.get(randomNum);
 				
 				tName.setText(lineRead[0]);
-				pf1.setText(lineRead[1]);
-				tCnic.setText(lineRead[2]);
-				ta1.setText(lineRead[3]);
-				tAge.setText(lineRead[4]);
-				tGender.setText(lineRead[5]);
-				tNationality.setText(lineRead[6]);
-				tPhone.setText(lineRead[7]);
-				tPassport.setText(lineRead[8]);
+				tUser.setText(lineRead[1]);
+				pf1.setText(lineRead[2]);
+				tCnic.setText(lineRead[3]);
+				ta1.setText(lineRead[4]);
+				tAge.setText(lineRead[5]);
+				tGender.setText(lineRead[6]);
+				tNationality.setText(lineRead[7]);
+				tPhone.setText(lineRead[8]);
+				tPassport.setText(lineRead[9]);
 				
 			}
 		});
+		
 		b1.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -542,10 +566,10 @@ public class Admin_SignUp {
 		boolean cb = false, psb = false, gb = false;
 
 		Vector<Boolean> vec = new Vector<Boolean>();
-		//Border border = BorderFactory.createLineBorder(Color.RED);
+		
 		try {
 			age = Integer.parseInt(tAge.getText());
-			tAge.setBorder(TEXTFIELDBORDER);
+			tAge.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 			eage.setVisible(false);
 
@@ -561,10 +585,11 @@ public class Admin_SignUp {
 			val = false;
 			vec.add(val);
 		}
-		AdminName = tName.getText();
-		AdminPassword = pf1.getText();
+		CustomerName = tName.getText();
+		CustomerUsername = tUser.getText();
+		CustomerPassword = pf1.getText();
 
-		AdminAddress = ta1.getText();
+		CustomerAddress = ta1.getText();
 		cnic = tCnic.getText();
 		phone = tPhone.getText();
 		nation = tNationality.getText();
@@ -576,7 +601,25 @@ public class Admin_SignUp {
 		// layerUI));
 		// f5.add(numberPanel)
 		// validating phone number
+		
+		if (!cH.userExists(CustomerUsername)) {
+			tUser.setBorder(TEXTFIELDBORDER);
 
+			eUser.setVisible(false);
+
+			val = true;
+			vec.add(val);
+		}
+		else {
+			tUser.setBorder(border);
+
+			// (200,520,300,30)
+			eUser.setVisible(true);
+
+			val = false;
+			vec.add(val);
+		}
+		
 		pb = validatePhoneNumber(phone);
 		if (pb) {
 			System.out.println("correct phone");
@@ -694,10 +737,10 @@ public class Admin_SignUp {
 		long lphone = Long.parseLong(numberOnly);
 		System.out.print(lphone);
 		long lpassport = Long.parseLong(passport);
-		return aH.AddAdmin(AdminID, AdminName, AdminPassword, lcnic, age, gender, AdminAddress, joinDate, nation,
+		return cH.AddCustomer(CustomerID, CustomerName,CustomerUsername, CustomerPassword, lcnic, age, gender, CustomerAddress, joinDate, nation,
 				lphone, lpassport);
 	}
-
+	
 	protected void load_auto() {
 		auto_data = new ArrayList<String[]>();
 		String line = "";  
@@ -705,14 +748,12 @@ public class Admin_SignUp {
 		try   
 		{  
 			//parsing a CSV file into BufferedReader class constructor  
-			BufferedReader br = new BufferedReader(new FileReader("src/mainPackage//TestCases/admin_Inputs.csv"));  
+			BufferedReader br = new BufferedReader(new FileReader("src/mainPackage//TestCases/customer_Inputs.csv"));  
 			while ((line = br.readLine()) != null)   //returns a Boolean value  
 			{  
 				String[] lineRead = line.split(splitBy);    // use comma as separator  
 				auto_data.add(lineRead);
-				System.out.println("Admin [Name=" + lineRead[0] + ", Password=" + lineRead[1] + ", CNIC=" + lineRead[2] + ", Address= " 
-						+ lineRead[3] + ", Age= " + lineRead[4] + ", Sex= " + lineRead[5] + ", Nationality= " + lineRead[6] 
-						+  ", Phone= " + lineRead[7] + ", Passport= " + lineRead[8] + "]");  
+				System.out.println("Customer [Name=" + lineRead[0] + ", User=" + lineRead[1] + ", Password=" + lineRead[2] + ", CNIC=" + lineRead[3] + ", Address= " + lineRead[4] + ", Age= " + lineRead[5] + ", Sex= " + lineRead[6] + ", Nationality= " + lineRead[7] +  ", Phone= " + lineRead[8] + ", Passport= " + lineRead[9] + "]");  
 			}  
 			br.close();
 		}   
